@@ -12,7 +12,7 @@
     }
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #0f172a;
+      background: #000000; /* Darker background */
       color: #ffffff;
       line-height: 1.6;
     }
@@ -23,15 +23,8 @@
     header {
       text-align: center;
       padding: 4rem 1rem 2rem;
-      background: linear-gradient(to bottom, #1e293b, #0f172a);
+      background: #1e1e1e; /* Dark theme */
       animation: fadeIn 1.2s ease;
-    }
-    header img {
-      border-radius: 50%;
-      width: 120px;
-      height: 120px;
-      object-fit: cover;
-      border: 4px solid white;
     }
     h1 {
       font-size: 2.5rem;
@@ -49,13 +42,13 @@
     .btn {
       display: inline-block;
       margin-top: 1rem;
-      background: #1e293b;
+      background: #1e1e1e;
       padding: 0.75rem 1.5rem;
       border-radius: 8px;
       transition: background 0.3s;
     }
     .btn:hover {
-      background: #334155;
+      background: #333333;
     }
     .section {
       padding: 3rem 1rem;
@@ -74,13 +67,13 @@
       margin: 0 auto;
     }
     .card {
-      background: #1e293b;
+      background: #1e1e1e;
       border-radius: 12px;
       padding: 1.5rem;
       transition: transform 0.3s ease, background 0.3s ease;
     }
     .card:hover {
-      background: #334155;
+      background: #333333;
       transform: translateY(-5px);
     }
     .tags {
@@ -100,7 +93,7 @@
       margin-bottom: 2rem;
     }
     .tab-buttons button {
-      background: #1e293b;
+      background: #1e1e1e;
       color: white;
       border: none;
       padding: 0.5rem 1rem;
@@ -112,7 +105,7 @@
     }
     .tab-buttons button.active {
       background: white;
-      color: #0f172a;
+      color: #000000;
     }
     .projects {
       display: grid;
@@ -122,7 +115,7 @@
       margin: 0 auto;
     }
     .project {
-      background: #1e293b;
+      background: #1e1e1e;
       border-radius: 12px;
       overflow: hidden;
       transition: transform 0.3s ease;
@@ -139,7 +132,7 @@
       padding: 1rem;
     }
     footer {
-      background: #1e293b;
+      background: #1e1e1e;
       text-align: center;
       padding: 2rem 1rem;
       margin-top: 2rem;
@@ -179,7 +172,6 @@
 <body>
 
   <header>
-    <img src="https://via.placeholder.com/120" alt="Omar Aljahli" />
     <h1>Omar Aljahli</h1>
     <p class="subtitle">Data Analyst | Web Developer | UX/UI Designer</p>
     <p class="description">Motivated IT graduate with a background in Computer Information Systems, seeking a role in Data Analysis, Business Analysis, Web Design, or Project Management.</p>
@@ -231,11 +223,11 @@
     </div>
     <div id="web" class="projects">
       <div class="project">
-        <img src="https://i.imgur.com/rf3e9Jj.jpeg" alt="" style="width: 100%; height: auto; border-radius: 12px;" />
+        <img src="https://i.imgur.com/rf3e9Jj.jpeg" alt="CoDemy Banner" style="width: 100%; height: auto; border-radius: 12px;" />
         <a href="https://drive.google.com/drive/folders/1nepy6J5Yu-0NjbTGHrhkyoFSWL3Kk1kv" target="_blank">
           <div class="project-content">
             <h3>CoDemy</h3>
-            <p>The Cooperative Training Platform is a smart solution designed to streamline the internship search and application process for university students. It connects students with companies, enhances communication, and ensures secure, efficient data management to improve the overall training experience.</p>
+            <p>The Cooperative Training Platform is a smart solution designed to streamline the internship search and application process for students.</p>
             <div class="tags">
               <span class="tag">PHP</span>
               <span class="tag">HTML</span>
@@ -247,7 +239,7 @@
       </div>
       <div class="project">
         <a href="https://qaren.tech/" target="_blank">
-          <img src="https://i.imgur.com/wZ03oP1.png" alt="" />
+          <img src="https://i.imgur.com/wZ03oP1.png" alt="Qaren" />
           <div class="project-content">
             <h3>Qaren</h3>
             <p>A product review platform offering detailed reviews, price comparisons, AI recommendations, sentiment analysis, and price tracking to help users make informed decisions.</p>
@@ -263,18 +255,16 @@
       </div>
     </div>
     <div id="design" class="projects" style="display:none;">
-      <div class="project">
-        <img src="https://i.imgur.com/7kjmmfJ.png" alt="" />
-        <div class="project-content">
-          <h3>Brand Identity Design</h3>
-          <p>Complete brand identity packages for various projects.</p>
+      <div class="project" onclick="toggleDropdown('brand')">
+        <h3>Brand Identity Design</h3>
+        <div class="dropdown" id="brand" style="display: none;">
+          <p><a href="link_to_your_brand_identity_gallery">View Gallery</a></p>
         </div>
       </div>
-      <div class="project">
-        <img src="https://i.imgur.com/cymjQeo.png" alt="" />
-        <div class="project-content">
-          <h3>Digital Art Collection</h3>
-          <p>Series of digital illustrations and photo manipulations.</p>
+      <div class="project" onclick="toggleDropdown('art')">
+        <h3>Digital Art Collection</h3>
+        <div class="dropdown" id="art" style="display: none;">
+          <p><a href="link_to_your_digital_art_gallery">View Gallery</a></p>
         </div>
       </div>
     </div>
@@ -302,6 +292,11 @@
       buttons.forEach(btn => btn.classList.remove('active'));
       if (tab === 'web') buttons[0].classList.add('active');
       else buttons[1].classList.add('active');
+    }
+
+    function toggleDropdown(id) {
+      const dropdown = document.getElementById(id);
+      dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
     }
   </script>
 

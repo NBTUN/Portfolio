@@ -3139,8 +3139,12 @@ input, select, textarea {
 			}
 
 		.wrapper.style4 {
-			background-color: transparent;
-		}
+  background-color: #111;
+  border-top: 2px solid #333;
+  border-bottom: 2px solid #333;
+  padding: 4em 1em;
+}
+
 
 		.wrapper.style5 {
 			background-color: #ffffff;
@@ -3997,3 +4001,53 @@ input, select, textarea {
 	body.is-mobile.landing #footer {
 		background-color: #1d242a;
 	}
+
+:root {
+  --bg: #1a1a1a;
+  --text: #eeeeee;
+  --accent: #00ffcc;
+  --highlight: #444;
+  --link: #6cf;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+a {
+  color: var(--link);
+  border-bottom: none;
+}
+
+a:hover {
+  color: #fff;
+}
+
+footer {
+  text-align: center;
+  padding: 2em 1em;
+  font-size: 14px;
+  color: var(--text);
+  opacity: 0.9;
+}
+ul.actions.contact a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text);
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+ul.actions.contact i {
+  font-size: 1.2rem;
+  color: var(--accent);
+}
+
+ul.icons a {
+  border-bottom: none !important;
+  text-decoration: none;
+}
+

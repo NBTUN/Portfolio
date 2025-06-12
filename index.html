@@ -1,148 +1,289 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NBTUN - Projects</title>
-    <link rel="stylesheet" href="assets/css/main.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        /* Projects Section Styling */
-        .projects-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            padding: 2rem;
-        }
-        
-        .project-card {
-            background: var(--surface);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-        }
-        
-        .project-cover {
-            height: 200px;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
-        
-        .project-cover::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .project-card:hover .project-cover::before {
-            opacity: 1;
-        }
-        
-        .project-info {
-            padding: 1.5rem;
-        }
-        
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-        
-        .project-tag {
-            background: var(--primary);
-            color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-        }
-        
-        /* Featured Work Header */
-        .featured-work-header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-        
-        .work-categories {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-        
-        .work-category {
-            font-weight: bold;
-            color: var(--primary);
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Omar Aljahli - Portfolio</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #0f172a;
+      color: #ffffff;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    header {
+      text-align: center;
+      padding: 4rem 1rem 2rem;
+      background: linear-gradient(to bottom, #1e293b, #0f172a);
+      animation: fadeIn 1.5s ease;
+    }
+
+    header img {
+      border-radius: 9999px;
+      width: 120px;
+      height: 120px;
+      border: 4px solid #fff;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      margin: 2rem 0 1rem;
+      text-align: center;
+    }
+
+    .subtitle {
+      color: #94a3b8;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .description {
+      max-width: 600px;
+      margin: 0 auto 1.5rem;
+      color: #cbd5e1;
+    }
+
+    .btn {
+      background: #1e293b;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      display: inline-block;
+      margin-top: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #334155;
+    }
+
+    .section {
+      padding: 4rem 1rem;
+      animation: fadeInUp 1.5s ease;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .card {
+      background: #1e293b;
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      background: #334155;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .tag {
+      background: #334155;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .project {
+      background: #1e293b;
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+    .project:hover {
+      transform: translateY(-5px);
+      background: #334155;
+    }
+
+    .project img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .project-content {
+      padding: 1rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 3rem 1rem;
+      background: #1e293b;
+      margin-top: 4rem;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin: 2rem auto;
+      max-width: 500px;
+    }
+
+    .contact-box {
+      background: #0f172a;
+      padding: 1rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+    }
+
+    .socials {
+      margin-top: 1rem;
+    }
+
+    .socials a {
+      display: inline-block;
+      margin: 0 0.5rem;
+      background: #0f172a;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      transition: background 0.3s ease;
+    }
+
+    .socials a:hover {
+      background: #334155;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media(max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <!-- [Previous sections remain the same until projects section] -->
-    
-    <section id="projects">
-        <div class="featured-work-header">
-            <h2>Featured Work</h2>
-            <div class="work-categories">
-                <span class="work-category">Web Projects</span>
-                <span class="work-category">Design Work</span>
-            </div>
+
+  <header>
+    <img src="https://via.placeholder.com/120" alt="Profile Picture" />
+    <h1>Omar Aljahli</h1>
+    <p class="subtitle">Data Analyst | Web Developer | UX/UI Designer</p>
+    <p class="description">
+      Motivated IT graduate with a background in Computer Information Systems, seeking a role in Data Analysis, Business Analysis, Web Design, or Project Management.
+    </p>
+    <a href="#" class="btn">View Resume</a>
+  </header>
+
+  <section class="section">
+    <h2>Skills & Expertise</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Web Development</h3>
+        <div class="tags">
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">React</span>
+          <span class="tag">Python</span>
         </div>
-        
-        <div class="projects-container">
-            <!-- CoDemy Project -->
-            <a href="https://codemy-project-link.com" target="_blank" class="project-card">
-                <div class="project-cover" style="background-image: url('https://via.placeholder.com/600x400?text=CoDemy');">
-                    <div class="project-title-overlay">
-                        <h3>CoDemy</h3>
-                    </div>
-                </div>
-                <div class="project-info">
-                    <h3>CoDemy</h3>
-                    <p>The Cooperative Training Platform is a smart solution designed to streamline the internship search and application process for university students.</p>
-                    <div class="project-tags">
-                        <span class="project-tag">PHP</span>
-                        <span class="project-tag">HTML</span>
-                        <span class="project-tag">CSS</span>
-                        <span class="project-tag">Figure</span>
-                    </div>
-                </div>
-            </a>
-            
-            <!-- Qaren Project -->
-            <a href="https://qaren-project-link.com" target="_blank" class="project-card">
-                <div class="project-cover" style="background-image: url('https://via.placeholder.com/600x400?text=Qaren');">
-                    <div class="project-title-overlay">
-                        <h3>Qaren</h3>
-                    </div>
-                </div>
-                <div class="project-info">
-                    <h3>Qaren</h3>
-                    <p>A product review platform that offers detailed reviews, price comparisons, AI-based recommendations, and sentiment analysis.</p>
-                    <div class="project-tags">
-                        <span class="project-tag">React</span>
-                        <span class="project-tag">Node.js</span>
-                        <span class="project-tag">Supabase</span>
-                        <span class="project-tag">OpenAI</span>
-                    </div>
-                </div>
-            </a>
+      </div>
+      <div class="card">
+        <h3>Design & Creative</h3>
+        <div class="tags">
+          <span class="tag">Figma</span>
+          <span class="tag">Adobe Photoshop</span>
+          <span class="tag">Canva</span>
         </div>
-    </section>
-    
-    <!-- [Rest of your HTML remains the same] -->
+      </div>
+      <div class="card">
+        <h3>Management & Analysis</h3>
+        <div class="tags">
+          <span class="tag">Data Analysis</span>
+          <span class="tag">Customer Service</span>
+          <span class="tag">Risk Management</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Featured Work</h2>
+    <div class="projects">
+      <div class="project">
+        <img src="https://via.placeholder.com/600x300?text=Smart+Price+Comparison" alt="Project 1" />
+        <div class="project-content">
+          <h3>Brand Identity Design</h3>
+          <p>Complete brand identity packages for various projects</p>
+          <div class="tags">
+            <span class="tag">Photoshop</span>
+            <span class="tag">Figma</span>
+            <span class="tag">Canva</span>
+          </div>
+        </div>
+      </div>
+      <div class="project">
+        <img src="https://via.placeholder.com/600x300?text=Digital+Art+Collection" alt="Project 2" />
+        <div class="project-content">
+          <h3>Digital Art Collection</h3>
+          <p>Series of digital illustrations and photo manipulations</p>
+          <div class="tags">
+            <span class="tag">Canva</span>
+            <span class="tag">Digital Art</span>
+            <span class="tag">Photoshop</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <h2>Let's Work Together</h2>
+    <div class="contact-info">
+      <div class="contact-box">📧 vgxclass@gmail.com</div>
+      <div class="contact-box">📞 0533969771</div>
+    </div>
+    <div class="socials">
+      <a href="#">LinkedIn</a>
+      <a href="#">Instagram</a>
+    </div>
+    <p style="margin-top: 2rem; font-size: 0.8rem; color: #94a3b8;">© 2025 Omar Aljahli. All rights reserved.</p>
+  </footer>
+
 </body>
 </html>

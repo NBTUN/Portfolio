@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NBTUN</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>NBTUN - Software Engineer</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div class="container">
@@ -25,7 +25,7 @@
         
         <section id="about">
             <h2>About Me</h2>
-            <p>Hello! I'm Omar, a passionate software engineer with experience in building robust and scalable applications. I love solving complex problems and creating efficient solutions.</p>
+            <p>Hello! I'm Omar, a passionate software engineer with experience in building robust and scalable applications. I specialize in backend development and cloud solutions, with a strong focus on creating efficient systems that solve real-world problems.</p>
         </section>
         
         <section id="skills">
@@ -34,28 +34,28 @@
                 <div class="skill-category">
                     <h3>Programming Languages</h3>
                     <ul>
-                        <li>Python</li>
-                        <li>JavaScript</li>
-                        <li>Java</li>
-                        <li>C++</li>
+                        <li><i class="fas fa-code"></i> Python</li>
+                        <li><i class="fas fa-code"></i> JavaScript</li>
+                        <li><i class="fas fa-code"></i> Java</li>
+                        <li><i class="fas fa-code"></i> C++</li>
                     </ul>
                 </div>
                 <div class="skill-category">
-                    <h3>Frameworks & Technologies</h3>
+                    <h3>Technologies</h3>
                     <ul>
-                        <li>React</li>
-                        <li>Node.js</li>
-                        <li>Django</li>
-                        <li>Flask</li>
+                        <li><i class="fas fa-server"></i> Node.js</li>
+                        <li><i class="fas fa-database"></i> MongoDB</li>
+                        <li><i class="fab fa-aws"></i> AWS</li>
+                        <li><i class="fas fa-code-branch"></i> Git</li>
                     </ul>
                 </div>
                 <div class="skill-category">
-                    <h3>Tools & Platforms</h3>
+                    <h3>Frameworks</h3>
                     <ul>
-                        <li>Git</li>
-                        <li>Docker</li>
-                        <li>AWS</li>
-                        <li>Linux</li>
+                        <li><i class="fab fa-react"></i> React</li>
+                        <li><i class="fas fa-flask"></i> Flask</li>
+                        <li><i class="fab fa-node-js"></i> Express</li>
+                        <li><i class="fas fa-cubes"></i> Django</li>
                     </ul>
                 </div>
             </div>
@@ -64,12 +64,12 @@
         <section id="projects">
             <h2>Projects</h2>
             <div class="project">
-                <h3>Project Title 1</h3>
-                <p>Description of project 1. What it does, technologies used, and your role in it.</p>
+                <h3>Automated Deployment System</h3>
+                <p>Created a CI/CD pipeline using GitHub Actions and AWS that reduced deployment times by 70%. Technologies used: Python, Docker, AWS ECS.</p>
             </div>
             <div class="project">
-                <h3>Project Title 2</h3>
-                <p>Description of project 2. What it does, technologies used, and your role in it.</p>
+                <h3>E-commerce Analytics Dashboard</h3>
+                <p>Developed a real-time analytics platform processing 10,000+ transactions daily. Built with Node.js, MongoDB, and React.</p>
             </div>
         </section>
         
@@ -85,12 +85,30 @@
                 <a href="https://linkedin.com/in/yourprofile" target="_blank" class="contact-link">
                     <i class="fab fa-linkedin"></i> LinkedIn
                 </a>
+                <a href="https://twitter.com/yourprofile" target="_blank" class="contact-link">
+                    <i class="fab fa-twitter"></i> Twitter
+                </a>
             </div>
         </section>
         
         <footer>
-            <p>&copy; 2023 NBTUN. All rights reserved.</p>
+            <p>&copy; <span id="year"></span> NBTUN. All rights reserved.</p>
         </footer>
     </div>
+
+    <script>
+        // Auto-update year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>

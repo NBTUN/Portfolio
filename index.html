@@ -1,575 +1,373 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
-<meta charset="UTF-8" />
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-<title>Omar Aljahli</title>
-
-<style>
-
-* {
-
-box-sizing: border-box;
-
-margin: 0;
-
-padding: 0;
-
-}
-
-body {
-
-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-
-background: #0f172a;
-
-color: #ffffff;
-
-line-height: 1.6;
-
-}
-
-a {
-
-text-decoration: none;
-
-color: inherit;
-
-}
-
-header {
-
-text-align: center;
-
-padding: 4rem 1rem 2rem;
-
-background: linear-gradient(to bottom, #1e293b, #0f172a);
-
-animation: fadeIn 1.2s ease;
-
-}
-
-header img {
-
-border-radius: 50%;
-
-width: 120px;
-
-height: 120px;
-
-object-fit: cover;
-
-border: 4px solid white;
-
-}
-h1 {
-      font-size: 2.5rem;
-      margin-top: 1rem;
-    }
-    .subtitle {
-      color: #94a3b8;
-      font-size: 1rem;
-    }
-    .description {
-      max-width: 600px;
-      margin: 1rem auto;
-      color: #cbd5e1;
-    }
-    .btn {
-      display: inline-block;
-      margin-top: 1rem;
-      background: #1e1e1e;
-      padding: 0.75rem 1.5rem;
-      border-radius: 8px;
-      transition: background 0.3s;
-    }
-    .btn:hover {
-      background: #333333;
-    }
-    .section {
-      padding: 3rem 1rem;
-      animation: fadeInUp 1s ease;
-    }
-
-h2 {
-
-text-align: center;
-
-margin-bottom: 2rem;
-
-font-size: 1.8rem;
-
-}
-
-.cards {
-
-display: grid;
-
-grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-
-gap: 1.5rem;
-
-max-width: 960px;
-
-margin: 0 auto;
-
-}
-
-.card {
-
-background: #1e293b;
-
-border-radius: 12px;
-
-padding: 1.5rem;
-
-transition: transform 0.3s ease, background 0.3s ease;
-
-}
-
-.card:hover {
-
-background: #334155;
-
-transform: translateY(-5px);
-
-}
-
-.tags {
-
-display: flex;
-
-flex-wrap: wrap;
-
-gap: 0.5rem;
-
-margin-top: 1rem;
-
-}
-
-.tag {
-
-background: #334155;
-
-padding: 0.25rem 0.75rem;
-
-border-radius: 999px;
-
-font-size: 0.75rem;
-
-}
-
-.tab-buttons {
-
-text-align: center;
-
-margin-bottom: 2rem;
-
-}
-
-.tab-buttons button {
-
-background: #1e293b;
-
-color: white;
-
-border: none;
-
-padding: 0.5rem 1rem;
-
-border-radius: 8px;
-
-margin: 0 0.5rem;
-
-cursor: pointer;
-
-font-weight: bold;
-
-transition: background 0.3s;
-
-}
-
-.tab-buttons button.active {
-
-background: white;
-
-color: #0f172a;
-
-}
-
-.projects {
-
-display: grid;
-
-grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-
-gap: 1.5rem;
-
-max-width: 1000px;
-
-margin: 0 auto;
-
-}
-
-.project {
-
-background: #1e293b;
-
-border-radius: 12px;
-
-overflow: hidden;
-
-transition: transform 0.3s ease;
-
-}
-
-.project:hover {
-
-transform: translateY(-5px);
-
-}
-
-.project img {
-
-width: 100%;
-
-height: 180px;
-
-object-fit: cover;
-
-}
-
-.project-content {
-
-padding: 1rem;
-
-}
-
-footer {
-
-background: #1e293b;
-
-text-align: center;
-
-padding: 2rem 1rem;
-
-margin-top: 2rem;
-
-}
-
-.contact-info {
-
-display: flex;
-
-flex-wrap: wrap;
-
-justify-content: center;
-
-gap: 2rem;
-
-margin-bottom: 1rem;
-
-}
-
-.icon {
-
-display: inline-block;
-
-margin-right: 8px;
-
-font-size: 1.2rem;
-
-}
-
-.socials a {
-
-margin: 0 0.5rem;
-
-background: #0f172a;
-
-padding: 0.5rem 1rem;
-
-border-radius: 8px;
-
-transition: background 0.3s;
-
-}
-
-.socials a:hover {
-
-background: #334155;
-
-}
-
-@keyframes fadeIn {
-
-from { opacity: 0; transform: translateY(-20px); }
-
-to { opacity: 1; transform: translateY(0); }
-
-}
-
-@keyframes fadeInUp {
-
-from { opacity: 0; transform: translateY(30px); }
-
-to { opacity: 1; transform: translateY(0); }
-
-}
-
-</style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Omar Aljahli</title>
+    <style>
+        /* ===== Base Styles ===== */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0f172a;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ===== Animations ===== */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== Header Styles ===== */
+        header {
+            text-align: center;
+            padding: 4rem 1rem 2rem;
+            background: linear-gradient(to bottom, #1e293b, #0f172a);
+            animation: fadeIn 1.2s ease;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-top: 1rem;
+        }
+
+        .subtitle {
+            color: #94a3b8;
+            font-size: 1rem;
+        }
+
+        .description {
+            max-width: 600px;
+            margin: 1rem auto;
+            color: #cbd5e1;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 1rem;
+            background: #1e1e1e;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #333333;
+        }
+
+        /* ===== Section Styles ===== */
+        .section {
+            padding: 3rem 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+        }
+
+        /* ===== Card Styles ===== */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .card:hover {
+            background: #334155;
+            transform: translateY(-5px);
+        }
+
+        /* ===== Tag Styles ===== */
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background: #334155;
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+        }
+
+        /* ===== Tab Styles ===== */
+        .tab-buttons {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .tab-buttons button {
+            background: #1e293b;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            margin: 0 0.5rem;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .tab-buttons button.active {
+            background: white;
+            color: #0f172a;
+        }
+
+        /* ===== Project Styles ===== */
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .project {
+            background: #1e293b;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .project:hover {
+            transform: translateY(-5px);
+        }
+
+        .project img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .project-content {
+            padding: 1rem;
+        }
+
+        /* ===== Footer Styles ===== */
+        footer {
+            background: #1e293b;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 2rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .icon {
+            display: inline-block;
+            margin-right: 8px;
+            font-size: 1.2rem;
+        }
+
+        .socials a {
+            margin: 0 0.5rem;
+            background: #0f172a;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
+
+        .socials a:hover {
+            background: #334155;
+        }
+
+        .copyright {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+    </style>
 </head>
-
 <body>
-
-<header>
-
-<img src="https://via.placeholder.com/120" alt="Omar Aljahli" />
-
-<h1>Omar Aljahli</h1>
-
-<p class="subtitle">Data Analyst | Web Developer | UX/UI Designer</p>
-
-<p class="description">Motivated IT graduate with a background in Computer Information Systems, seeking a role in Data Analysis, Business Analysis, Web Design, or Project Management.</p>
-
-<a href="https://drive.google.com/file/d/1OHGrZ2j0bTsWcHEe5uKMoggAZWsgsRE6/view?usp=sharing" target="_blank" class="btn">View Resume</a>
-
-</header>
-
-<section class="section">
-
-<h2>Skills & Expertise</h2>
-
-<div class="cards">
-
-<div class="card">
-
-<h3>Web Development</h3>
-
-<div class="tags">
-
-<span class="tag">React/Next.js</span>
-
-<span class="tag">Python</span>
-
-<span class="tag">Supabase</span>
-
-<span class="tag">HTML</span>
-
-<span class="tag">CSS</span>
-
-<span class="tag">SQL</span>
-
-<span class="tag">JavaScript</span>
-
-</div>
-
-</div>
-
-<div class="card">
-
-<h3>Design & Creative</h3>
-
-<div class="tags">
-
-<span class="tag">Adobe Photoshop</span>
-
-<span class="tag">Figma</span>
-
-<span class="tag">Canva</span>
-
-<span class="tag">UI/UX Design</span>
-
-</div>
-
-</div>
-
-<div class="card">
-
-<h3>Management & Analysis</h3>
-
-<div class="tags">
-
-<span class="tag">Data Analysis</span>
-
-<span class="tag">Customer Service</span>
-
-<span class="tag">Data Mining</span>
-
-<span class="tag">IS Audit</span>
-
-<span class="tag">Risk and Project Management</span>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<section class="section">
-
-<h2>Featured Work</h2>
-
-<div class="tab-buttons">
-
-<button class="active" onclick="showTab('web')">💻 Web Projects</button>
-
-<button onclick="showTab('design')">🎨 Design Work</button>
-
-</div>
-
-<div id="web" class="projects">
-
-<div class="project">
-
-<img src="https://i.imgur.com/rf3e9Jj.jpeg" alt="" style="width: 100%; height: auto; border-radius: 12px;" />
-
-<a href="https://drive.google.com/drive/folders/1nepy6J5Yu-0NjbTGHrhkyoFSWL3Kk1kv" target="_blank">
-
-<div class="project-content">
-
-<h3>CoDemy</h3>
-
-<p>The Cooperative Training Platform is a smart solution designed to streamline the internship search and application process for university students. It connects students with companies, enhances communication, and ensures secure, efficient data management to improve the overall training experience.</p>
-
-<div class="tags">
-
-<span class="tag">PHP</span>
-
-<span class="tag">HTML</span>
-
-<span class="tag">CSS</span>
-
-<span class="tag">Figma</span>
-
-</div>
-
-</div>
-
-</a>
-
-</div>
-
-<div class="project">
-
-<a href="https://qaren.tech/" target="_blank">
-
-<img src="https://i.imgur.com/wZ03oP1.png" alt="" />
-
-<div class="project-content">
-
-<h3>Qaren</h3>
-
-<p>A product review platform offering detailed reviews, price comparisons, AI recommendations, sentiment analysis, and price tracking to help users make informed decisions.</p>
-
-<div class="tags">
-
-<span class="tag">React</span>
-
-<span class="tag">Node.js</span>
-
-<span class="tag">Supabase</span>
-
-<span class="tag">Firecrawl</span>
-
-<span class="tag">OpenAI</span>
-
-</div>
-
-</div>
-
-</a>
-
-</div>
-
-</div>
-
-<div id="design" class="projects" style="display:none;">
-
-<div class="project">
-
-<img src="https://i.imgur.com/7kjmmfJ.png" alt="" />
-
-<div class="project-content">
-
-<h3>Brand Identity Design</h3>
-
-<p>Complete brand identity packages for various projects.</p>
-
-</div>
-
-</div>
-
-<div class="project">
-
-<img src="https://i.imgur.com/cymjQeo.png" alt="" />
-
-<div class="project-content">
-
-<h3>Digital Art Collection</h3>
-
-<p>Series of digital illustrations and photo manipulations.</p>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<footer>
-
-<h2>Let's Work Together</h2>
-
-<div class="contact-info">
-
-<div><span class="icon">📧</span>vgxxclass@gmail.com</div>
-
-<div><span class="icon">📞</span>0533995711</div>
-
-</div>
-
-<div class="socials">
-
-<a href="https://www.linkedin.com/in/omar-aljahli-ab483b2b4/" target="_blank">🔗 LinkedIn</a>
-
-<a href="https://www.instagram.com/vgx_750/" target="_blank">📸 Instagram</a>
-
-</div>
-
-<p style="margin-top: 1rem; font-size: 0.9rem; color: #94a3b8;">© 2025 Omar Aljahli</p>
-
-</footer>
-
-<script>
-
-function showTab(tab) {
-
-document.getElementById('web').style.display = tab === 'web' ? 'grid' : 'none';
-
-document.getElementById('design').style.display = tab === 'design' ? 'grid' : 'none';
-
-const buttons = document.querySelectorAll('.tab-buttons button');
-
-buttons.forEach(btn => btn.classList.remove('active'));
-
-if (tab === 'web') buttons[0].classList.add('active');
-
-else buttons[1].classList.add('active');
-
-}
-
-</script>
-
+    <!-- Header Section -->
+    <header>
+        <h1>Omar Aljahli</h1>
+        <p class="subtitle">Data Analyst | Web Developer | UX/UI Designer</p>
+        <p class="description">
+            Motivated IT graduate with a background in Computer Information Systems, 
+            seeking a role in Data Analysis, Business Analysis, Web Design, or Project Management.
+        </p>
+        <a href="https://drive.google.com/file/d/1OHGrZ2j0bTsWcHEe5uKMoggAZWsgsRE6/view?usp=sharing" 
+           target="_blank" 
+           class="btn">
+           View Resume
+        </a>
+    </header>
+
+    <!-- Skills Section -->
+    <section class="section">
+        <h2>Skills & Expertise</h2>
+        <div class="cards">
+            <div class="card">
+                <h3>Web Development</h3>
+                <div class="tags">
+                    <span class="tag">React/Next.js</span>
+                    <span class="tag">Python</span>
+                    <span class="tag">Supabase</span>
+                    <span class="tag">HTML</span>
+                    <span class="tag">CSS</span>
+                    <span class="tag">SQL</span>
+                    <span class="tag">JavaScript</span>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Design & Creative</h3>
+                <div class="tags">
+                    <span class="tag">Adobe Photoshop</span>
+                    <span class="tag">Figma</span>
+                    <span class="tag">Canva</span>
+                    <span class="tag">UI/UX Design</span>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Management & Analysis</h3>
+                <div class="tags">
+                    <span class="tag">Data Analysis</span>
+                    <span class="tag">Customer Service</span>
+                    <span class="tag">Data Mining</span>
+                    <span class="tag">IS Audit</span>
+                    <span class="tag">Risk and Project Management</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section">
+        <h2>Featured Work</h2>
+        <div class="tab-buttons">
+            <button class="active" onclick="showTab('web')">💻 Web Projects</button>
+            <button onclick="showTab('design')">🎨 Design Work</button>
+        </div>
+
+        <!-- Web Projects Tab -->
+        <div id="web" class="projects">
+            <div class="project">
+                <img src="https://i.imgur.com/rf3e9Jj.jpeg" alt="CoDemy Project">
+                <a href="https://drive.google.com/drive/folders/1nepy6J5Yu-0NjbTGHrhkyoFSWL3Kk1kv" target="_blank">
+                    <div class="project-content">
+                        <h3>CoDemy</h3>
+                        <p>
+                            The Cooperative Training Platform is a smart solution designed to streamline 
+                            the internship search and application process for university students.
+                        </p>
+                        <div class="tags">
+                            <span class="tag">PHP</span>
+                            <span class="tag">HTML</span>
+                            <span class="tag">CSS</span>
+                            <span class="tag">Figma</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="project">
+                <a href="https://qaren.tech/" target="_blank">
+                    <img src="https://i.imgur.com/wZ03oP1.png" alt="Qaren Project">
+                    <div class="project-content">
+                        <h3>Qaren</h3>
+                        <p>
+                            A product review platform offering detailed reviews, price comparisons, 
+                            AI recommendations, sentiment analysis, and price tracking.
+                        </p>
+                        <div class="tags">
+                            <span class="tag">React</span>
+                            <span class="tag">Node.js</span>
+                            <span class="tag">Supabase</span>
+                            <span class="tag">Firecrawl</span>
+                            <span class="tag">OpenAI</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Design Projects Tab -->
+        <div id="design" class="projects" style="display:none;">
+            <div class="project">
+                <img src="https://i.imgur.com/7kjmmfJ.png" alt="Brand Identity Design">
+                <div class="project-content">
+                    <h3>Brand Identity Design</h3>
+                    <p>Complete brand identity packages for various projects.</p>
+                </div>
+            </div>
+            <div class="project">
+                <img src="https://i.imgur.com/cymjQeo.png" alt="Digital Art Collection">
+                <div class="project-content">
+                    <h3>Digital Art Collection</h3>
+                    <p>Series of digital illustrations and photo manipulations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <h2>Let's Work Together</h2>
+        <div class="contact-info">
+            <div><span class="icon">📧</span>vgxxclass@gmail.com</div>
+            <div><span class="icon">📞</span>0533995711</div>
+        </div>
+        <div class="socials">
+            <a href="https://www.linkedin.com/in/omar-aljahli-ab483b2b4/" target="_blank">🔗 LinkedIn</a>
+            <a href="https://www.instagram.com/vgx_750/" target="_blank">📸 Instagram</a>
+        </div>
+        <p class="copyright">© 2025 Omar Aljahli</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        function showTab(tab) {
+            // Toggle project tabs visibility
+            document.getElementById('web').style.display = tab === 'web' ? 'grid' : 'none';
+            document.getElementById('design').style.display = tab === 'design' ? 'grid' : 'none';
+            
+            // Update active button styling
+            const buttons = document.querySelectorAll('.tab-buttons button');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            if (tab === 'web') {
+                buttons[0].classList.add('active');
+            } else {
+                buttons[1].classList.add('active');
+            }
+        }
+    </script>
 </body>
-
 </html>

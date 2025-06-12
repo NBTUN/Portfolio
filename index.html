@@ -1,428 +1,194 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Omar Aljahli</title>
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Previous head content remains the same until the style section -->
     <style>
-        /* ===== Base Styles ===== */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        /* Previous styles remain the same */
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #0f172a;
-            color: #ffffff;
-            line-height: 1.6;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        /* ===== Animations ===== */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* ===== Header Styles ===== */
-        header {
-            text-align: center;
-            padding: 4rem 1rem 2rem;
-            background: linear-gradient(to bottom, #1e293b, #0f172a);
-            animation: fadeIn 1.2s ease;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            margin-top: 1rem;
-        }
-
-        .subtitle {
-            color: #94a3b8;
-            font-size: 1rem;
-        }
-
-        .description {
-            max-width: 600px;
-            margin: 1rem auto;
-            color: #cbd5e1;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 1rem;
-            background: #1e293b;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            border: 1px solid #334155;
-        }
-
-        .btn:hover {
-            background: #334155;
-            transform: translateY(-2px);
-        }
-
-        /* ===== Section Styles ===== */
-        .section {
-            padding: 3rem 1rem;
-            animation: fadeInUp 1s ease;
-        }
-
-        h2 {
-            text-align: center;
-            margin-bottom: 2rem;
-            font-size: 1.8rem;
-        }
-
-        /* ===== Card Styles ===== */
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 1.5rem;
-            max-width: 960px;
-            margin: 0 auto;
-        }
-
-        .card {
-            background: #1e293b;
-            border-radius: 12px;
-            padding: 1.5rem;
-            transition: transform 0.3s ease, background 0.3s ease;
-        }
-
-        .card:hover {
-            background: #334155;
-            transform: translateY(-5px);
-        }
-
-        .card h3 {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 0.5rem;
-        }
-
-        .card-icon {
-            font-size: 1.2rem;
-            width: 24px;
-            text-align: center;
-            color: white;
-        }
-
-        /* ===== Tag Styles ===== */
-        .tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-
-        .tag {
-            background: #334155;
-            padding: 0.25rem 0.75rem;
-            border-radius: 999px;
-            font-size: 0.75rem;
-        }
-
-        /* ===== Tab Styles ===== */
-        .tab-buttons {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .tab-buttons button {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: #1e293b;
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            margin: 0 0.5rem;
-            cursor: pointer;
-            font-weight: bold;
-            transition: background 0.3s;
-        }
-
-        .tab-buttons button.active {
-            background: white;
-            color: #0f172a;
-        }
-
-        /* ===== Project Styles ===== */
-        .projects {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .project {
-            background: #1e293b;
-            border-radius: 12px;
-            overflow: hidden;
-            transition: transform 0.3s ease;
-        }
-
-        .project:hover {
-            transform: translateY(-5px);
-        }
-
-        .project img {
+        /* ===== Gallery Modal Styles ===== */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
             width: 100%;
-            height: 180px;
-            object-fit: cover;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            overflow: auto;
         }
 
-        .project-content {
-            padding: 1rem;
+        .modal-content {
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 40px;
+            max-width: 1200px;
         }
 
-        /* ===== Footer Styles ===== */
-        footer {
-            background: #1e293b;
-            text-align: center;
-            padding: 2rem 1rem;
-            margin-top: 2rem;
-        }
-
-        .contact-info {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .contact-info div {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .socials {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .socials a {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: #0f172a;
-            padding: 0.5rem 1rem;
+        .modal-img {
+            width: 100%;
+            height: auto;
             border-radius: 8px;
-            transition: background 0.3s;
+            transition: transform 0.3s;
+            cursor: pointer;
         }
 
-        .socials a:hover {
+        .modal-img:hover {
+            transform: scale(1.02);
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .collection-menu {
+            display: none;
+            position: absolute;
+            background: #1e293b;
+            border-radius: 8px;
+            padding: 10px;
+            z-index: 10;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .collection-menu a {
+            display: block;
+            padding: 8px 16px;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+
+        .collection-menu a:hover {
             background: #334155;
         }
 
-        .copyright {
-            margin-top: 1rem;
-            font-size: 0.9rem;
-            color: #94a3b8;
-        }
-
-        /* Icon styles */
-        .icon {
-            font-size: 1rem;
-            width: 20px;
-            text-align: center;
+        .has-collection {
+            position: relative;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
-    <!-- Header Section -->
-    <header>
-        <h1>Omar Aljahli</h1>
-        <p class="subtitle">Data Analyst | Web Developer | UX/UI Designer</p>
-        <p class="description">
-            Motivated IT graduate with a background in Computer Information Systems, 
-            seeking a role in Data Analysis, Business Analysis, Web Design, or Project Management.
-        </p>
-        <a href="https://drive.google.com/file/d/1OHGrZ2j0bTsWcHEe5uKMoggAZWsgsRE6/view?usp=sharing" 
-           target="_blank" 
-           class="btn">
-           <i class="fas fa-file-alt icon"></i> View Resume & Expertise
-        </a>
-    </header>
+    <!-- Previous body content remains the same until the Design Projects Tab -->
 
-    <!-- Skills Section -->
-    <section class="section">
-        <h2>Skills</h2>
-        <div class="cards">
-            <div class="card">
-                <h3><i class="fas fa-code card-icon"></i> Web Development</h3>
-                <div class="tags">
-                    <span class="tag">React/Next.js</span>
-                    <span class="tag">Python</span>
-                    <span class="tag">Supabase</span>
-                    <span class="tag">HTML</span>
-                    <span class="tag">CSS</span>
-                    <span class="tag">SQL</span>
-                    <span class="tag">JavaScript</span>
+    <!-- Design Projects Tab -->
+    <div id="design" class="projects" style="display:none;">
+        <div class="project">
+            <img src="https://i.imgur.com/7kjmmfJ.png" alt="Brand Identity Design">
+            <div class="project-content has-collection" onclick="toggleCollectionMenu(event)">
+                <h3>Brand Identity Design</h3>
+                <p>Complete brand identity packages for various projects.</p>
+                <div class="collection-menu" id="collectionMenu">
+                    <a href="#" onclick="openGallery('codemy')">CoDemy</a>
+                    <a href="#" onclick="openGallery('qaren')">Qaren</a>
                 </div>
-            </div>
-            <div class="card">
-                <h3><i class="fas fa-paint-brush card-icon"></i> Design & Creative</h3>
                 <div class="tags">
-                    <span class="tag">Adobe Photoshop</span>
+                    <span class="tag">Photoshop</span>
                     <span class="tag">Figma</span>
+                    <span class="tag">Auxre</span>
                     <span class="tag">Canva</span>
-                    <span class="tag">UI/UX Design</span>
-                </div>
-            </div>
-            <div class="card">
-                <h3><i class="fas fa-chart-line card-icon"></i> Management & Analysis</h3>
-                <div class="tags">
-                    <span class="tag">Data Analysis</span>
-                    <span class="tag">Customer Service</span>
-                    <span class="tag">Data Mining</span>
-                    <span class="tag">IS Audit</span>
-                    <span class="tag">Risk and Project Management</span>
                 </div>
             </div>
         </div>
-    </section>
+        <!-- Rest of your design projects -->
+    </div>
 
-    <!-- Projects Section -->
-    <section class="section">
-        <h2>Featured Work</h2>
-        <div class="tab-buttons">
-            <button class="active" onclick="showTab('web')">
-                <i class="fas fa-laptop-code icon"></i> Web Projects
-            </button>
-            <button onclick="showTab('design')">
-                <i class="fas fa-palette icon"></i> Design Work
-            </button>
+    <!-- Gallery Modals -->
+    <div id="codemyGallery" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div class="modal-content" id="codemyGalleryContent">
+            <!-- Images will be added dynamically -->
         </div>
+    </div>
 
-        <!-- Web Projects Tab -->
-        <div id="web" class="projects">
-            <div class="project">
-                <a href="https://drive.google.com/drive/folders/1nepy6J5Yu-0NjbTGHrhkyoFSWL3Kk1kv?usp=sharing" target="_blank">
-                    <img src="https://i.imgur.com/rf3e9Jj.jpeg" alt="CoDemy Project">
-                    <div class="project-content">
-                        <h3>CoDemy</h3>
-                        <p>
-                            The Cooperative Training Platform is a smart solution designed to streamline 
-                            the internship search and application process for university students.
-                        </p>
-                        <div class="tags">
-                            <span class="tag">PHP</span>
-                            <span class="tag">HTML</span>
-                            <span class="tag">CSS</span>
-                            <span class="tag">Figma</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <div class="project">
-                <a href="https://qaren.tech/" target="_blank">
-                    <img src="https://i.imgur.com/wZ03oP1.png" alt="Qaren Project">
-                    <div class="project-content">
-                        <h3>Qaren</h3>
-                        <p>
-                            A product review platform offering detailed reviews, price comparisons, 
-                            AI recommendations, sentiment analysis, and price tracking.
-                        </p>
-                        <div class="tags">
-                            <span class="tag">React</span>
-                            <span class="tag">Node.js</span>
-                            <span class="tag">Supabase</span>
-                            <span class="tag">Firecrawl</span>
-                            <span class="tag">OpenAI</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
+    <div id="qarenGallery" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div class="modal-content" id="qarenGalleryContent">
+            <!-- Images will be added dynamically -->
         </div>
+    </div>
 
-        <!-- Design Projects Tab -->
-        <div id="design" class="projects" style="display:none;">
-            <div class="project">
-                <img src="https://i.imgur.com/7kjmmfJ.png" alt="Brand Identity Design">
-                <div class="project-content">
-                    <h3>Brand Identity Design</h3>
-                    <p>Complete brand identity packages for various projects.</p>
-                    <div class="tags">
-                        <span class="tag">Photoshop</span>
-                        <span class="tag">Figma</span>
-                        <span class="tag">Auxre</span>
-                        <span class="tag">Canva</span>
-                    </div>
-                </div>
-            </div>
-            <div class="project">
-                <img src="https://i.imgur.com/cymjQeo.png" alt="Digital Art Collection">
-                <div class="project-content">
-                    <h3>Digital Art Collection</h3>
-                    <p>Series of digital illustrations and photo manipulations.</p>
-                    <div class="tags">
-                        <span class="tag">Photoshop</span>
-                        <span class="tag">Canva</span>
-                        <span class="tag">Digital Art</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    <!-- Footer Section -->
-    <footer>
-        <h2>Let's Work Together</h2>
-        <div class="contact-info">
-            <div><i class="fas fa-envelope icon"></i>vgxxclass@gmail.com</div>
-            <div><i class="fas fa-phone icon"></i>0533995711</div>
-        </div>
-        <div class="socials">
-            <a href="https://www.linkedin.com/in/omar-aljahli-ab483b2b4/" target="_blank">
-                <i class="fab fa-linkedin icon"></i>
-            </a>
-            <a href="https://www.instagram.com/vgx_750/" target="_blank">
-                <i class="fab fa-instagram icon"></i>
-            </a>
-        </div>
-        <p class="copyright">© 2025 Omar Aljahli</p>
-    </footer>
-
-    <!-- JavaScript -->
     <script>
-        function showTab(tab) {
-            // Toggle project tabs visibility
-            document.getElementById('web').style.display = tab === 'web' ? 'grid' : 'none';
-            document.getElementById('design').style.display = tab === 'design' ? 'grid' : 'none';
+        // Previous JavaScript remains the same
+
+        function toggleCollectionMenu(event) {
+            event.stopPropagation();
+            const menu = document.getElementById('collectionMenu');
+            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function openGallery(galleryName) {
+            // Close any open menus
+            document.getElementById('collectionMenu').style.display = 'none';
             
-            // Update active button styling
-            const buttons = document.querySelectorAll('.tab-buttons button');
-            buttons.forEach(btn => btn.classList.remove('active'));
+            // Show the selected gallery
+            document.getElementById(`${galleryName}Gallery`).style.display = 'block';
             
-            if (tab === 'web') {
-                buttons[0].classList.add('active');
-            } else {
-                buttons[1].classList.add('active');
+            // Here you would populate the gallery with your images
+            // For now I'll add placeholder code - you'll replace this with your actual images
+            const galleryContent = document.getElementById(`${galleryName}GalleryContent`);
+            galleryContent.innerHTML = '';
+            
+            // Example for CoDemy - replace with your actual images
+            if (galleryName === 'codemy') {
+                const images = [
+                    'https://i.imgur.com/rf3e9Jj.jpeg',
+                    'https://i.imgur.com/example1.jpg',
+                    'https://i.imgur.com/example2.jpg'
+                    // Add all your CoDemy brand identity images here
+                ];
+                
+                images.forEach(img => {
+                    const imgElement = document.createElement('img');
+                    imgElement.src = img;
+                    imgElement.className = 'modal-img';
+                    imgElement.alt = 'CoDemy Brand Identity';
+                    galleryContent.appendChild(imgElement);
+                });
+            }
+            
+            // Example for Qaren - replace with your actual images
+            if (galleryName === 'qaren') {
+                const images = [
+                    'https://i.imgur.com/wZ03oP1.png',
+                    'https://i.imgur.com/example3.jpg',
+                    'https://i.imgur.com/example4.jpg'
+                    // Add all your Qaren brand identity images here
+                ];
+                
+                images.forEach(img => {
+                    const imgElement = document.createElement('img');
+                    imgElement.src = img;
+                    imgElement.className = 'modal-img';
+                    imgElement.alt = 'Qaren Brand Identity';
+                    galleryContent.appendChild(imgElement);
+                });
+            }
+        }
+
+        function closeModal() {
+            document.querySelectorAll('.modal').forEach(modal => {
+                modal.style.display = 'none';
+            });
+        }
+
+        // Close menus when clicking elsewhere
+        window.onclick = function(event) {
+            if (!event.target.matches('.has-collection') && !event.target.closest('.collection-menu')) {
+                document.getElementById('collectionMenu').style.display = 'none';
+            }
+            
+            if (event.target.className === 'modal') {
+                closeModal();
             }
         }
     </script>

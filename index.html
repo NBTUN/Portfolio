@@ -3,211 +3,187 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Omar Aljahli - Portfolio</title>
+  <title>Omar Aljahli</title>
   <style>
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
-
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: #0f172a;
       color: #ffffff;
       line-height: 1.6;
     }
-
     a {
-      color: inherit;
       text-decoration: none;
+      color: inherit;
     }
-
     header {
       text-align: center;
       padding: 4rem 1rem 2rem;
       background: linear-gradient(to bottom, #1e293b, #0f172a);
-      animation: fadeIn 1.5s ease;
+      animation: fadeIn 1.2s ease;
     }
-
     header img {
-      border-radius: 9999px;
+      border-radius: 50%;
       width: 120px;
       height: 120px;
-      border: 4px solid #fff;
-      margin-bottom: 1rem;
+      object-fit: cover;
+      border: 4px solid white;
     }
-
     h1 {
       font-size: 2.5rem;
-      font-weight: bold;
-      margin-bottom: 0.5rem;
+      margin-top: 1rem;
     }
-
-    h2 {
-      font-size: 1.5rem;
-      margin: 2rem 0 1rem;
-      text-align: center;
-    }
-
     .subtitle {
       color: #94a3b8;
       font-size: 1rem;
-      margin-bottom: 1rem;
     }
-
     .description {
       max-width: 600px;
-      margin: 0 auto 1.5rem;
+      margin: 1rem auto;
       color: #cbd5e1;
     }
-
     .btn {
+      display: inline-block;
+      margin-top: 1rem;
       background: #1e293b;
       padding: 0.75rem 1.5rem;
       border-radius: 8px;
-      display: inline-block;
-      margin-top: 1rem;
-      transition: all 0.3s ease;
+      transition: background 0.3s;
     }
-
     .btn:hover {
       background: #334155;
     }
-
     .section {
-      padding: 4rem 1rem;
-      animation: fadeInUp 1.5s ease;
+      padding: 3rem 1rem;
+      animation: fadeInUp 1s ease;
     }
-
+    h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 1.8rem;
+    }
     .cards {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 1.5rem;
-      margin-top: 2rem;
+      max-width: 960px;
+      margin: 0 auto;
     }
-
     .card {
       background: #1e293b;
       border-radius: 12px;
       padding: 1.5rem;
       transition: transform 0.3s ease, background 0.3s ease;
     }
-
     .card:hover {
-      transform: translateY(-5px);
       background: #334155;
+      transform: translateY(-5px);
     }
-
     .tags {
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem;
       margin-top: 1rem;
     }
-
     .tag {
       background: #334155;
       padding: 0.25rem 0.75rem;
       border-radius: 999px;
       font-size: 0.75rem;
     }
-
+    .tab-buttons {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .tab-buttons button {
+      background: #1e293b;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      margin: 0 0.5rem;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .tab-buttons button.active {
+      background: white;
+      color: #0f172a;
+    }
     .projects {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 1.5rem;
-      margin-top: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
     }
-
     .project {
       background: #1e293b;
       border-radius: 12px;
       overflow: hidden;
-      transition: transform 0.3s ease, background 0.3s ease;
+      transition: transform 0.3s ease;
     }
-
     .project:hover {
       transform: translateY(-5px);
-      background: #334155;
     }
-
     .project img {
       width: 100%;
       height: 180px;
       object-fit: cover;
     }
-
     .project-content {
       padding: 1rem;
     }
-
     footer {
-      text-align: center;
-      padding: 3rem 1rem;
       background: #1e293b;
-      margin-top: 4rem;
+      text-align: center;
+      padding: 2rem 1rem;
+      margin-top: 2rem;
     }
-
     .contact-info {
       display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      margin: 2rem auto;
-      max-width: 500px;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 1rem;
     }
-
-    .contact-box {
-      background: #0f172a;
-      padding: 1rem;
-      border-radius: 8px;
-      font-size: 0.95rem;
-    }
-
-    .socials {
-      margin-top: 1rem;
-    }
-
-    .socials a {
+    .icon {
       display: inline-block;
+      margin-right: 8px;
+      font-size: 1.2rem;
+    }
+    .socials a {
       margin: 0 0.5rem;
       background: #0f172a;
       padding: 0.5rem 1rem;
-      border-radius: 6px;
-      transition: background 0.3s ease;
+      border-radius: 8px;
+      transition: background 0.3s;
     }
-
     .socials a:hover {
       background: #334155;
     }
-
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(-20px); }
       to { opacity: 1; transform: translateY(0); }
     }
-
     @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(40px); }
+      from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
-    }
-
-    @media(max-width: 600px) {
-      h1 {
-        font-size: 2rem;
-      }
     }
   </style>
 </head>
 <body>
 
   <header>
-    <img src="https://via.placeholder.com/120" alt="Profile Picture" />
+    <img src="https://via.placeholder.com/120" alt="Omar Aljahli" />
     <h1>Omar Aljahli</h1>
     <p class="subtitle">Data Analyst | Web Developer | UX/UI Designer</p>
-    <p class="description">
-      Motivated IT graduate with a background in Computer Information Systems, seeking a role in Data Analysis, Business Analysis, Web Design, or Project Management.
-    </p>
-    <a href="#" class="btn">View Resume</a>
+    <p class="description">Motivated IT graduate with a background in Computer Information Systems, seeking a role in Data Analysis, Business Analysis, Web Design, or Project Management.</p>
+    <a href="https://drive.google.com/file/d/1OHGrZ2j0bTsWcHEe5uKMoggAZWsgsRE6/view?usp=sharing" target="_blank" class="btn">View Resume</a>
   </header>
 
   <section class="section">
@@ -216,19 +192,22 @@
       <div class="card">
         <h3>Web Development</h3>
         <div class="tags">
+          <span class="tag">React/Next.js</span>
+          <span class="tag">Python</span>
+          <span class="tag">Supabase</span>
           <span class="tag">HTML</span>
           <span class="tag">CSS</span>
+          <span class="tag">SQL</span>
           <span class="tag">JavaScript</span>
-          <span class="tag">React</span>
-          <span class="tag">Python</span>
         </div>
       </div>
       <div class="card">
         <h3>Design & Creative</h3>
         <div class="tags">
-          <span class="tag">Figma</span>
           <span class="tag">Adobe Photoshop</span>
+          <span class="tag">Figma</span>
           <span class="tag">Canva</span>
+          <span class="tag">UI/UX Design</span>
         </div>
       </div>
       <div class="card">
@@ -236,7 +215,9 @@
         <div class="tags">
           <span class="tag">Data Analysis</span>
           <span class="tag">Customer Service</span>
-          <span class="tag">Risk Management</span>
+          <span class="tag">Data Mining</span>
+          <span class="tag">IS Audit</span>
+          <span class="tag">Risk and Project Management</span>
         </div>
       </div>
     </div>
@@ -244,28 +225,62 @@
 
   <section class="section">
     <h2>Featured Work</h2>
-    <div class="projects">
+    <div class="tab-buttons">
+      <button class="active" onclick="showTab('web')">💻 Web Projects</button>
+      <button onclick="showTab('design')">🎨 Design Work</button>
+    </div>
+    <div id="web" class="projects">
       <div class="project">
-        <img src="https://via.placeholder.com/600x300?text=Smart+Price+Comparison" alt="Project 1" />
+        <img src="https://via.placeholder.com/600x300?text=CoDemy" alt="CoDemy" />
+        <div class="project-content">
+          <h3>CoDemy</h3>
+          <p>The Cooperative Training Platform is a smart solution designed to streamline internship search and application for students.</p>
+          <div class="tags">
+            <span class="tag">PHP</span>
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">Figma</span>
+          </div>
+        </div>
+      </div>
+      <div class="project">
+        <img src="https://via.placeholder.com/600x300?text=Qaren" alt="Qaren" />
+        <div class="project-content">
+          <h3>Qaren</h3>
+          <p>A product review platform offering comparisons, AI recommendations, sentiment analysis, and more.</p>
+          <div class="tags">
+            <span class="tag">React</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">Supabase</span>
+            <span class="tag">Firecrawl</span>
+            <span class="tag">OpenAI</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="design" class="projects" style="display:none;">
+      <div class="project">
+        <img src="https://via.placeholder.com/600x300?text=Smart+Price+Comparison" alt="Brand Identity" />
         <div class="project-content">
           <h3>Brand Identity Design</h3>
           <p>Complete brand identity packages for various projects</p>
           <div class="tags">
             <span class="tag">Photoshop</span>
             <span class="tag">Figma</span>
+            <span class="tag">Auxre</span>
             <span class="tag">Canva</span>
           </div>
         </div>
       </div>
       <div class="project">
-        <img src="https://via.placeholder.com/600x300?text=Digital+Art+Collection" alt="Project 2" />
+        <img src="https://via.placeholder.com/600x300?text=Digital+Art+Collection" alt="Art" />
         <div class="project-content">
           <h3>Digital Art Collection</h3>
           <p>Series of digital illustrations and photo manipulations</p>
           <div class="tags">
+            <span class="tag">Photoshop</span>
             <span class="tag">Canva</span>
             <span class="tag">Digital Art</span>
-            <span class="tag">Photoshop</span>
           </div>
         </div>
       </div>
@@ -275,15 +290,27 @@
   <footer>
     <h2>Let's Work Together</h2>
     <div class="contact-info">
-      <div class="contact-box">📧 vgxclass@gmail.com</div>
-      <div class="contact-box">📞 0533969771</div>
+      <div><span class="icon">📧</span>vgxclass@gmail.com</div>
+      <div><span class="icon">📞</span>0533969771</div>
     </div>
     <div class="socials">
-      <a href="#">LinkedIn</a>
-      <a href="#">Instagram</a>
+      <a href="https://www.linkedin.com/in/omar-aljahli-ab483b2b4/" target="_blank">🔗 LinkedIn</a>
+      <a href="https://www.instagram.com/vgx_750/" target="_blank">📸 Instagram</a>
     </div>
-    <p style="margin-top: 2rem; font-size: 0.8rem; color: #94a3b8;">© 2025 Omar Aljahli. All rights reserved.</p>
+    <p style="margin-top: 1rem; font-size: 0.9rem; color: #94a3b8;">© 2025 Omar Aljahli</p>
   </footer>
+
+  <script>
+    function showTab(tab) {
+      document.getElementById('web').style.display = tab === 'web' ? 'grid' : 'none';
+      document.getElementById('design').style.display = tab === 'design' ? 'grid' : 'none';
+
+      const buttons = document.querySelectorAll('.tab-buttons button');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      if (tab === 'web') buttons[0].classList.add('active');
+      else buttons[1].classList.add('active');
+    }
+  </script>
 
 </body>
 </html>

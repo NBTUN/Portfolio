@@ -7,14 +7,33 @@
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Additional CSS for centering contact section */
-        #contact {
+        /* Center all content */
+        .container {
             text-align: center;
         }
+        
+        header, section, footer {
+            margin: 0 auto;
+            max-width: 800px;
+        }
+        
+        nav ul {
+            justify-content: center;
+        }
+        
+        .skills-grid {
+            justify-content: center;
+        }
+        
+        .project {
+            margin: 0 auto 2rem;
+            max-width: 700px;
+        }
+        
+        /* Contact section specific styling */
         .contact-links {
             justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
+            gap: 1.5rem;
         }
     </style>
 </head>
@@ -44,7 +63,7 @@
             <div class="skills-grid">
                 <div class="skill-category">
                     <h3>Programming Languages</h3>
-                    <ul>
+                    <ul style="text-align: left; display: inline-block;">
                         <li><i class="fas fa-code"></i> Python</li>
                         <li><i class="fas fa-code"></i> JavaScript</li>
                         <li><i class="fas fa-code"></i> Java</li>
@@ -53,7 +72,7 @@
                 </div>
                 <div class="skill-category">
                     <h3>Technologies</h3>
-                    <ul>
+                    <ul style="text-align: left; display: inline-block;">
                         <li><i class="fas fa-server"></i> Node.js</li>
                         <li><i class="fas fa-database"></i> MongoDB</li>
                         <li><i class="fab fa-aws"></i> AWS</li>
@@ -62,7 +81,7 @@
                 </div>
                 <div class="skill-category">
                     <h3>Frameworks</h3>
-                    <ul>
+                    <ul style="text-align: left; display: inline-block;">
                         <li><i class="fab fa-react"></i> React</li>
                         <li><i class="fas fa-flask"></i> Flask</li>
                         <li><i class="fab fa-node-js"></i> Express</li>

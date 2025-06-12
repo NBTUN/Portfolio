@@ -111,6 +111,20 @@
             transform: translateY(-5px);
         }
 
+        .card h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-icon {
+            font-size: 1.2rem;
+            width: 24px;
+            text-align: center;
+            color: #60a5fa;
+        }
+
         /* ===== Tag Styles ===== */
         .tags {
             display: flex;
@@ -260,7 +274,7 @@
         <h2>Skills</h2>
         <div class="cards">
             <div class="card">
-                <h3>Web Development</h3>
+                <h3><i class="fas fa-code card-icon"></i> Web Development</h3>
                 <div class="tags">
                     <span class="tag">React/Next.js</span>
                     <span class="tag">Python</span>
@@ -272,7 +286,7 @@
                 </div>
             </div>
             <div class="card">
-                <h3>Design & Creative</h3>
+                <h3><i class="fas fa-paint-brush card-icon"></i> Design & Creative</h3>
                 <div class="tags">
                     <span class="tag">Adobe Photoshop</span>
                     <span class="tag">Figma</span>
@@ -281,7 +295,7 @@
                 </div>
             </div>
             <div class="card">
-                <h3>Management & Analysis</h3>
+                <h3><i class="fas fa-chart-line card-icon"></i> Management & Analysis</h3>
                 <div class="tags">
                     <span class="tag">Data Analysis</span>
                     <span class="tag">Customer Service</span>
@@ -309,7 +323,6 @@
         <div id="web" class="projects">
             <div class="project">
                 <img src="https://i.imgur.com/rf3e9Jj.jpeg" alt="CoDemy Project">
-                <a href="https://drive.google.com/drive/folders/1nepy6J5Yu-0NjbTGHrhkyoFSWL3Kk1kv" target="_blank">
                     <div class="project-content">
                         <h3>CoDemy</h3>
                         <p>

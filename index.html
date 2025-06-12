@@ -304,6 +304,9 @@
             padding: 10px;
             z-index: 10;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            bottom: 100%; /* Changed from default to make menu appear above */
+            left: 0;
+            margin-bottom: 10px; /* Added space between menu and content */
         }
 
         .collection-menu a {
@@ -436,10 +439,10 @@
         <div id="design" class="projects" style="display:none;">
             <div class="project">
                 <img src="https://i.imgur.com/7kjmmfJ.png" alt="Brand Identity Design">
-                <div class="project-content has-collection" onclick="toggleCollectionMenu(event)">
+                <div class="project-content has-collection" onclick="toggleCollectionMenu(event, 'brandMenu')">
                     <h3>Brand Identity Design</h3>
                     <p>Complete brand identity packages for various projects.</p>
-                    <div class="collection-menu" id="collectionMenu">
+                    <div class="collection-menu" id="brandMenu">
                         <a href="#" onclick="openGallery('codemy'); return false;">CoDemy</a>
                         <a href="#" onclick="openGallery('qaren'); return false;">Qaren</a>
                     </div>
@@ -453,9 +456,13 @@
             </div>
             <div class="project">
                 <img src="https://i.imgur.com/cymjQeo.png" alt="Digital Art Collection">
-                <div class="project-content">
+                <div class="project-content has-collection" onclick="toggleCollectionMenu(event, 'artMenu')">
                     <h3>Digital Art Collection</h3>
                     <p>Series of digital illustrations and photo manipulations.</p>
+                    <div class="collection-menu" id="artMenu">
+                        <a href="#" onclick="openGallery('posters'); return false;">Posters</a>
+                        <a href="#" onclick="openGallery('posts'); return false;">Posts</a>
+                    </div>
                     <div class="tags">
                         <span class="tag">Photoshop</span>
                         <span class="tag">Canva</span>
@@ -477,6 +484,20 @@
     <div id="qarenGallery" class="modal">
         <span class="close" onclick="closeModal()">&times;</span>
         <div class="modal-content" id="qarenGalleryContent">
+            <!-- Images will be added dynamically -->
+        </div>
+    </div>
+
+    <div id="postersGallery" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div class="modal-content" id="postersGalleryContent">
+            <!-- Images will be added dynamically -->
+        </div>
+    </div>
+
+    <div id="postsGallery" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div class="modal-content" id="postsGalleryContent">
             <!-- Images will be added dynamically -->
         </div>
     </div>
@@ -517,15 +538,22 @@
             }
         }
 
-        function toggleCollectionMenu(event) {
+        function toggleCollectionMenu(event, menuId) {
             event.stopPropagation();
-            const menu = document.getElementById('collectionMenu');
+            const menu = document.getElementById(menuId);
+            // Close all other menus first
+            document.querySelectorAll('.collection-menu').forEach(m => {
+                if (m.id !== menuId) m.style.display = 'none';
+            });
+            // Toggle current menu
             menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
         }
 
         function openGallery(galleryName) {
             // Close any open menus
-            document.getElementById('collectionMenu').style.display = 'none';
+            document.querySelectorAll('.collection-menu').forEach(menu => {
+                menu.style.display = 'none';
+            });
             
             // Show the selected gallery
             document.getElementById(`${galleryName}Gallery`).style.display = 'block';
@@ -553,6 +581,20 @@
                     'https://via.placeholder.com/600x400/1e293b/ffffff?text=Qaren+2',
                     'https://via.placeholder.com/600x400/1e293b/ffffff?text=Qaren+3'
                 );
+            } else if (galleryName === 'posters') {
+                images.push(
+                    // Add your poster images here
+                    'https://via.placeholder.com/600x400/1e293b/ffffff?text=Poster+1',
+                    'https://via.placeholder.com/600x400/1e293b/ffffff?text=Poster+2',
+                    'https://via.placeholder.com/600x400/1e293b/ffffff?text=Poster+3'
+                );
+            } else if (galleryName === 'posts') {
+                images.push(
+                    // Add your post images here
+                    'https://via.placeholder.com/600x400/1e293b/ffffff?text=Post+1',
+                    'https://via.placeholder.com/600x400/1e293b/ffffff?text=Post+2',
+                    'https://via.placeholder.com/600x400/1e293b/ffffff?text=Post+3'
+                );
             }
             
             // Add images to gallery
@@ -560,7 +602,7 @@
                 const imgElement = document.createElement('img');
                 imgElement.src = img;
                 imgElement.className = 'modal-img';
-                imgElement.alt = `${galleryName} Brand Identity`;
+                imgElement.alt = `${galleryName} collection`;
                 galleryContent.appendChild(imgElement);
             });
         }
@@ -574,7 +616,9 @@
         // Close menus when clicking elsewhere
         window.onclick = function(event) {
             if (!event.target.matches('.has-collection') && !event.target.closest('.collection-menu')) {
-                document.getElementById('collectionMenu').style.display = 'none';
+                document.querySelectorAll('.collection-menu').forEach(menu => {
+                    menu.style.display = 'none';
+                });
             }
             
             if (event.target.className === 'modal') {

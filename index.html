@@ -180,6 +180,7 @@
             border-radius: 12px;
             overflow: hidden;
             transition: transform 0.3s ease;
+            position: relative;
         }
 
         .project:hover {
@@ -190,10 +191,63 @@
             width: 100%;
             height: 180px;
             object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .project:hover img {
+            transform: scale(1.05);
         }
 
         .project-content {
             padding: 1rem;
+        }
+
+        /* External link indicator for web projects */
+        .external-link {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .project:hover .external-link {
+            opacity: 1;
+        }
+
+        .external-link i {
+            color: white;
+            font-size: 14px;
+        }
+
+        /* Collection dropdown styles */
+        .collection-dropdown {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            display: none;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .project.has-collection:hover .collection-dropdown {
+            display: flex;
+        }
+
+        .collection-dropdown i {
+            font-size: 12px;
         }
 
         /* ===== Footer Styles ===== */
@@ -305,8 +359,9 @@
             z-index: 10;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             bottom: 100%;
-            left: 0;
+            right: 0;
             margin-bottom: 10px;
+            min-width: 150px;
         }
 
         .collection-menu a {
@@ -315,6 +370,7 @@
             color: white;
             text-decoration: none;
             border-radius: 4px;
+            white-space: nowrap;
         }
 
         .collection-menu a:hover {
@@ -398,6 +454,9 @@
             <div class="project">
                 <a href="https://drive.google.com/drive/folders/1nepy6J5Yu-0NjbTGHrhkyoFSWL3Kk1kv?usp=sharing" target="_blank">
                     <img src="https://i.imgur.com/rf3e9Jj.jpeg" alt="CoDemy Project">
+                    <div class="external-link">
+                        <i class="fas fa-external-link-alt"></i>
+                    </div>
                     <div class="project-content">
                         <h3>CoDemy</h3>
                         <p>
@@ -417,6 +476,9 @@
             <div class="project">
                 <a href="https://qaren.tech/" target="_blank">
                     <img src="https://i.imgur.com/wZ03oP1.png" alt="Qaren Project">
+                    <div class="external-link">
+                        <i class="fas fa-external-link-alt"></i>
+                    </div>
                     <div class="project-content">
                         <h3>Qaren</h3>
                         <p>
@@ -437,9 +499,13 @@
 
         <!-- Design Projects Tab -->
         <div id="design" class="projects" style="display:none;">
-            <div class="project">
+            <div class="project has-collection">
                 <img src="https://i.imgur.com/7kjmmfJ.png" alt="Brand Identity Design">
-                <div class="project-content has-collection" onclick="toggleCollectionMenu(event, 'brandMenu')">
+                <div class="collection-dropdown" onclick="toggleCollectionMenu(event, 'brandMenu')">
+                    <span>View Collection</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="project-content">
                     <h3>Brand Identity Design</h3>
                     <p>Complete brand identity packages for various projects.</p>
                     <div class="collection-menu" id="brandMenu">
@@ -454,9 +520,13 @@
                     </div>
                 </div>
             </div>
-            <div class="project">
+            <div class="project has-collection">
                 <img src="https://i.imgur.com/cymjQeo.png" alt="Digital Art Collection">
-                <div class="project-content has-collection" onclick="toggleCollectionMenu(event, 'artMenu')">
+                <div class="collection-dropdown" onclick="toggleCollectionMenu(event, 'artMenu')">
+                    <span>View Collection</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="project-content">
                     <h3>Digital Art Collection</h3>
                     <p>Series of digital illustrations and photo manipulations.</p>
                     <div class="collection-menu" id="artMenu">
@@ -614,7 +684,7 @@
 
         // Close menus when clicking elsewhere
         window.onclick = function(event) {
-            if (!event.target.matches('.has-collection') && !event.target.closest('.collection-menu')) {
+            if (!event.target.matches('.has-collection') && !event.target.closest('.collection-menu') && !event.target.matches('.collection-dropdown')) {
                 document.querySelectorAll('.collection-menu').forEach(menu => {
                     menu.style.display = 'none';
                 });

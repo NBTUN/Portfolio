@@ -166,7 +166,7 @@
             color: #0f172a;
         }
 
-        /* ===== Project Styles ===== */
+        /* ===== Enhanced Project Styles ===== */
         .projects {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -177,23 +177,182 @@
 
         .project {
             background: #1e293b;
-            border-radius: 12px;
+            border-radius: 16px;
             overflow: hidden;
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
+            border: 1px solid #334155;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
         }
 
         .project:hover {
             transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+            background: #334155;
         }
 
         .project img {
             width: 100%;
             height: 180px;
             object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .project:hover img {
+            transform: scale(1.05);
         }
 
         .project-content {
-            padding: 1rem;
+            padding: 1.5rem;
+            position: relative;
+        }
+
+        .project h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+            color: white;
+        }
+
+        .project p {
+            color: #94a3b8;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        /* Gradient overlay for images */
+        .project::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 180px;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.7) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+
+        .project:hover::before {
+            opacity: 1;
+        }
+
+        /* Button styles */
+        .project-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 8px;
+            color: white;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            z-index: 2;
+        }
+
+        .project-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .project-button svg {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.3s ease;
+        }
+
+        .project-button:hover svg {
+            transform: translateY(2px);
+        }
+
+        /* Tags container */
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        /* Individual tag style */
+        .project-tag {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .project-tag:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .relative {
+            position: relative;
+        }
+
+        .absolute {
+            position: absolute;
+        }
+
+        .inset-0 {
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .items-end {
+            align-items: flex-end;
+        }
+
+        .justify-end {
+            justify-content: flex-end;
+        }
+
+        .opacity-0 {
+            opacity: 0;
+        }
+
+        .group-hover\:opacity-100:hover {
+            opacity: 1;
+        }
+
+        .transition-opacity {
+            transition-property: opacity;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 150ms;
+        }
+
+        .duration-200 {
+            transition-duration: 200ms;
+        }
+
+        .bg-gradient-to-t {
+            background-image: linear-gradient(to top, var(--tw-gradient-stops));
+        }
+
+        .from-black\/80 {
+            --tw-gradient-from: rgba(0, 0, 0, 0.8);
+            --tw-gradient-to: rgba(0, 0, 0, 0);
+            --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+        }
+
+        .to-transparent {
+            --tw-gradient-to: transparent;
         }
 
         /* ===== Footer Styles ===== */
@@ -305,8 +464,9 @@
             z-index: 10;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             bottom: 100%;
-            left: 0;
+            right: 0;
             margin-bottom: 10px;
+            min-width: 150px;
         }
 
         .collection-menu a {
@@ -315,6 +475,7 @@
             color: white;
             text-decoration: none;
             border-radius: 4px;
+            white-space: nowrap;
         }
 
         .collection-menu a:hover {
@@ -323,7 +484,6 @@
 
         .has-collection {
             position: relative;
-            cursor: pointer;
         }
     </style>
 </head>
@@ -396,77 +556,113 @@
         <!-- Web Projects Tab -->
         <div id="web" class="projects">
             <div class="project">
-                <a href="https://drive.google.com/drive/folders/1nepy6J5Yu-0NjbTGHrhkyoFSWL3Kk1kv?usp=sharing" target="_blank">
+                <div class="relative overflow-hidden">
                     <img src="https://i.imgur.com/rf3e9Jj.jpeg" alt="CoDemy Project">
-                    <div class="project-content">
-                        <h3>CoDemy</h3>
-                        <p>
-                            The Cooperative Training Platform is a smart solution designed to streamline 
-                            the internship search and application process for university students.
-                        </p>
-                        <div class="tags">
-                            <span class="tag">PHP</span>
-                            <span class="tag">HTML</span>
-                            <span class="tag">CSS</span>
-                            <span class="tag">Figma</span>
-                        </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-end justify-end">
+                        <button class="project-button" onclick="window.open('https://drive.google.com/drive/folders/1nepy6J5Yu-0NjbTGHrhkyoFSWL3Kk1kv?usp=sharing', '_blank')">
+                            View
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9 6l6 6-6 6"></path>
+                            </svg>
+                        </button>
                     </div>
-                </a>
+                </div>
+                <div class="project-content">
+                    <h3>CoDemy</h3>
+                    <p>
+                        The Cooperative Training Platform is a smart solution designed to streamline 
+                        the internship search and application process for university students.
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag">PHP</span>
+                        <span class="project-tag">HTML</span>
+                        <span class="project-tag">CSS</span>
+                        <span class="project-tag">Figma</span>
+                    </div>
+                </div>
             </div>
 
             <div class="project">
-                <a href="https://qaren.tech/" target="_blank">
+                <div class="relative overflow-hidden">
                     <img src="https://i.imgur.com/wZ03oP1.png" alt="Qaren Project">
-                    <div class="project-content">
-                        <h3>Qaren</h3>
-                        <p>
-                            A product review platform offering detailed reviews, price comparisons, 
-                            AI recommendations, sentiment analysis, and price tracking.
-                        </p>
-                        <div class="tags">
-                            <span class="tag">React</span>
-                            <span class="tag">Node.js</span>
-                            <span class="tag">Supabase</span>
-                            <span class="tag">Firecrawl</span>
-                            <span class="tag">OpenAI</span>
-                        </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-end justify-end">
+                        <button class="project-button" onclick="window.open('https://qaren.tech/', '_blank')">
+                            View
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9 6l6 6-6 6"></path>
+                            </svg>
+                        </button>
                     </div>
-                </a>
+                </div>
+                <div class="project-content">
+                    <h3>Qaren</h3>
+                    <p>
+                        A product review platform offering detailed reviews, price comparisons, 
+                        AI recommendations, sentiment analysis, and price tracking.
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag">React</span>
+                        <span class="project-tag">Node.js</span>
+                        <span class="project-tag">Supabase</span>
+                        <span class="project-tag">Firecrawl</span>
+                        <span class="project-tag">OpenAI</span>
+                    </div>
+                </div>
             </div>
         </div>
 
         <!-- Design Projects Tab -->
         <div id="design" class="projects" style="display:none;">
             <div class="project">
-                <img src="https://i.imgur.com/7kjmmfJ.png" alt="Brand Identity Design">
-                <div class="project-content has-collection" onclick="toggleCollectionMenu(event, 'brandMenu')">
+                <div class="relative overflow-hidden">
+                    <img src="https://i.imgur.com/7kjmmfJ.png" alt="Brand Identity Design">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-end justify-end">
+                        <button class="project-button" onclick="toggleCollectionMenu(event, 'brandMenu')">
+                            View
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9 6l6 6-6 6"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="project-content has-collection">
                     <h3>Brand Identity Design</h3>
                     <p>Complete brand identity packages for various projects.</p>
                     <div class="collection-menu" id="brandMenu">
                         <a href="#" onclick="openGallery('codemy'); return false;">CoDemy</a>
                         <a href="#" onclick="openGallery('qaren'); return false;">Qaren</a>
                     </div>
-                    <div class="tags">
-                        <span class="tag">Photoshop</span>
-                        <span class="tag">Figma</span>
-                        <span class="tag">Auxre</span>
-                        <span class="tag">Canva</span>
+                    <div class="project-tags">
+                        <span class="project-tag">Photoshop</span>
+                        <span class="project-tag">Figma</span>
+                        <span class="project-tag">Auxre</span>
+                        <span class="project-tag">Canva</span>
                     </div>
                 </div>
             </div>
             <div class="project">
-                <img src="https://i.imgur.com/cymjQeo.png" alt="Digital Art Collection">
-                <div class="project-content has-collection" onclick="toggleCollectionMenu(event, 'artMenu')">
+                <div class="relative overflow-hidden">
+                    <img src="https://i.imgur.com/cymjQeo.png" alt="Digital Art Collection">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-end justify-end">
+                        <button class="project-button" onclick="toggleCollectionMenu(event, 'artMenu')">
+                            View
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9 6l6 6-6 6"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="project-content has-collection">
                     <h3>Digital Art Collection</h3>
                     <p>Series of digital illustrations and photo manipulations.</p>
                     <div class="collection-menu" id="artMenu">
                         <a href="#" onclick="openGallery('posters'); return false;">Posters</a>
                         <a href="#" onclick="openGallery('posts'); return false;">Posts</a>
                     </div>
-                    <div class="tags">
-                        <span class="tag">Photoshop</span>
-                        <span class="tag">Canva</span>
-                        <span class="tag">Digital Art</span>
+                    <div class="project-tags">
+                        <span class="project-tag">Photoshop</span>
+                        <span class="project-tag">Canva</span>
+                        <span class="project-tag">Digital Art</span>
                     </div>
                 </div>
             </div>
@@ -541,12 +737,20 @@
         function toggleCollectionMenu(event, menuId) {
             event.stopPropagation();
             const menu = document.getElementById(menuId);
+            
             // Close all other menus first
             document.querySelectorAll('.collection-menu').forEach(m => {
                 if (m.id !== menuId) m.style.display = 'none';
             });
-            // Toggle current menu
+            
+            // Position the menu relative to the button
+            const button = event.currentTarget;
+            const rect = button.getBoundingClientRect();
+            
             menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+            menu.style.position = 'absolute';
+            menu.style.top = `${rect.top - menu.offsetHeight - 10}px`;
+            menu.style.right = `${window.innerWidth - rect.right}px`;
         }
 
         function openGallery(galleryName) {
@@ -568,31 +772,27 @@
             if (galleryName === 'codemy') {
                 images.push(
                     'https://i.imgur.com/rf3e9Jj.jpeg',
-                    // Add more CoDemy brand identity images here
-                    'https://via.placeholder.com/600x400/1e293b/ffffff?text=CoDemy+1',
-                    'https://via.placeholder.com/600x400/1e293b/ffffff?text=CoDemy+2',
-                    'https://via.placeholder.com/600x400/1e293b/ffffff?text=CoDemy+3'
-                );
-            } else if (galleryName === 'qaren') {
-                images.push(
-                    // Qaren brand identity images
                     'https://i.imgur.com/BLseAAd.png',
                     'https://i.imgur.com/hjKutyU.png',
                     'https://i.imgur.com/tslLPuM.png'
                 );
+            } else if (galleryName === 'qaren') {
+                images.push(
+                    'https://i.imgur.com/wZ03oP1.png',
+                    'https://i.imgur.com/7kjmmfJ.png',
+                    'https://i.imgur.com/cymjQeo.png'
+                );
             } else if (galleryName === 'posters') {
                 images.push(
-                    // Add your poster images here
-                    'https://via.placeholder.com/600x400/1e293b/ffffff?text=Poster+1',
-                    'https://via.placeholder.com/600x400/1e293b/ffffff?text=Poster+2',
-                    'https://via.placeholder.com/600x400/1e293b/ffffff?text=Poster+3'
+                    'https://i.imgur.com/rf3e9Jj.jpeg',
+                    'https://i.imgur.com/wZ03oP1.png',
+                    'https://i.imgur.com/7kjmmfJ.png'
                 );
             } else if (galleryName === 'posts') {
                 images.push(
-                    // Add your post images here
-                    'https://via.placeholder.com/600x400/1e293b/ffffff?text=Post+1',
-                    'https://via.placeholder.com/600x400/1e293b/ffffff?text=Post+2',
-                    'https://via.placeholder.com/600x400/1e293b/ffffff?text=Post+3'
+                    'https://i.imgur.com/cymjQeo.png',
+                    'https://i.imgur.com/BLseAAd.png',
+                    'https://i.imgur.com/hjKutyU.png'
                 );
             }
             
@@ -602,6 +802,9 @@
                 imgElement.src = img;
                 imgElement.className = 'modal-img';
                 imgElement.alt = `${galleryName} collection`;
+                imgElement.onclick = function() {
+                    window.open(this.src, '_blank');
+                };
                 galleryContent.appendChild(imgElement);
             });
         }
@@ -614,7 +817,7 @@
 
         // Close menus when clicking elsewhere
         window.onclick = function(event) {
-            if (!event.target.matches('.has-collection') && !event.target.closest('.collection-menu')) {
+            if (!event.target.matches('.project-button') && !event.target.closest('.collection-menu')) {
                 document.querySelectorAll('.collection-menu').forEach(menu => {
                     menu.style.display = 'none';
                 });

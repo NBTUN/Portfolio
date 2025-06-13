@@ -228,28 +228,92 @@
             font-size: 14px;
         }
 
-        /* Collection dropdown styles */
+        /* Updated Collection Dropdown Button Styles */
         .collection-dropdown {
             position: absolute;
             top: 10px;
             right: 10px;
-            background: rgba(0, 0, 0, 0.7);
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 12px;
-            display: none;
+            display: inline-flex;
             align-items: center;
-            gap: 5px;
+            justify-content: center;
+            gap: 0.5rem;
+            white-space: nowrap;
+            text-align: center;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            border-radius: 0.375rem;
+            height: 2.25rem;
+            padding: 0 0.75rem;
+            background-color: rgba(30, 41, 59, 0.9);
+            backdrop-filter: blur(4px);
+            color: white;
+            border: none;
             cursor: pointer;
             z-index: 2;
+            display: none;
         }
 
         .project.has-collection:hover .collection-dropdown {
-            display: flex;
+            display: inline-flex;
         }
 
-        .collection-dropdown i {
-            font-size: 12px;
+        .collection-dropdown:hover {
+            background-color: rgba(30, 41, 59, 1);
+        }
+
+        .collection-dropdown svg {
+            pointer-events: none;
+            width: 1rem;
+            height: 1rem;
+            transition: transform 0.2s ease;
+        }
+
+        .collection-dropdown[aria-expanded="true"] svg {
+            transform: rotate(180deg);
+        }
+
+        /* Collection Menu Styles */
+        .collection-menu {
+            position: absolute;
+            right: 0;
+            top: 100%;
+            margin-top: 0.5rem;
+            min-width: 150px;
+            background: #1e293b;
+            border-radius: 0.5rem;
+            padding: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            z-index: 10;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.2s ease, transform 0.2s ease;
+            pointer-events: none;
+        }
+
+        .collection-menu.active {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .collection-menu a {
+            display: block;
+            padding: 0.5rem 1rem;
+            color: white;
+            text-decoration: none;
+            border-radius: 0.25rem;
+            font-size: 0.875rem;
+            transition: background 0.2s;
+        }
+
+        .collection-menu a:hover {
+            background: #334155;
+        }
+
+        /* Make sure the project container has relative positioning */
+        .project.has-collection {
+            position: relative;
         }
 
         /* ===== Footer Styles ===== */
@@ -353,49 +417,6 @@
             font-size: 35px;
             font-weight: bold;
             cursor: pointer;
-        }
-
-        /* Updated Collection Menu Styles */
-        .collection-menu {
-            display: none;
-            position: absolute;
-            background: #1e293b;
-            border-radius: 8px;
-            padding: 10px;
-            z-index: 10;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            right: 0;
-            top: 100%;
-            margin-top: 5px;
-            min-width: 150px;
-            opacity: 0;
-            transform: translateY(-10px);
-            transition: opacity 0.2s ease, transform 0.2s ease;
-        }
-
-        .collection-menu.active {
-            display: block;
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .collection-menu a {
-            display: block;
-            padding: 8px 16px;
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            white-space: nowrap;
-            transition: background 0.2s;
-        }
-
-        .collection-menu a:hover {
-            background: #334155;
-        }
-
-        /* Make sure the project container has relative positioning */
-        .project.has-collection {
-            position: relative;
         }
 
         /* Gallery title */
@@ -531,10 +552,15 @@
         <div id="design" class="projects" style="display:none;">
             <div class="project has-collection">
                 <img src="https://i.imgur.com/7kjmmfJ.png" alt="Brand Identity Design">
-                <div class="collection-dropdown" onclick="toggleCollectionMenu(event, 'brandMenu')">
-                    <span>View Collection</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
+                <button class="collection-dropdown" onclick="toggleCollectionMenu(event, 'brandMenu')" 
+                        aria-expanded="false" aria-haspopup="menu">
+                    View Collection
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" 
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" 
+                         stroke-linejoin="round">
+                        <path d="m6 9 6 6 6-6"></path>
+                    </svg>
+                </button>
                 <div class="project-content">
                     <h3>Brand Identity Design</h3>
                     <p>Complete brand identity packages for various projects.</p>
@@ -552,10 +578,15 @@
             </div>
             <div class="project has-collection">
                 <img src="https://i.imgur.com/cymjQeo.png" alt="Digital Art Collection">
-                <div class="collection-dropdown" onclick="toggleCollectionMenu(event, 'artMenu')">
-                    <span>View Collection</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
+                <button class="collection-dropdown" onclick="toggleCollectionMenu(event, 'artMenu')" 
+                        aria-expanded="false" aria-haspopup="menu">
+                    View Collection
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" 
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" 
+                         stroke-linejoin="round">
+                        <path d="m6 9 6 6 6-6"></path>
+                    </svg>
+                </button>
                 <div class="project-content">
                     <h3>Digital Art Collection</h3>
                     <p>Series of digital illustrations and photo manipulations.</p>
@@ -651,33 +682,37 @@
             ]
         };
 
-        // Track currently open menu
-        let currentOpenMenu = null;
-
         // Toggle collection menu
         function toggleCollectionMenu(event, menuId) {
             event.preventDefault();
             event.stopPropagation();
             
+            const button = event.currentTarget;
             const menu = document.getElementById(menuId);
+            const isExpanded = button.getAttribute('aria-expanded') === 'true';
             
-            // Close currently open menu if it's different from the clicked one
-            if (currentOpenMenu && currentOpenMenu !== menu) {
-                currentOpenMenu.classList.remove('active');
-            }
+            // Close all other menus first
+            document.querySelectorAll('.collection-menu').forEach(m => {
+                if (m.id !== menuId) {
+                    m.classList.remove('active');
+                    const btn = m.parentElement.querySelector('.collection-dropdown');
+                    if (btn) btn.setAttribute('aria-expanded', 'false');
+                }
+            });
             
-            // Toggle clicked menu
-            menu.classList.toggle('active');
-            currentOpenMenu = menu.classList.contains('active') ? menu : null;
+            // Toggle current menu
+            button.setAttribute('aria-expanded', !isExpanded);
+            menu.classList.toggle('active', !isExpanded);
         }
 
         // Open gallery function
         function openGallery(galleryName) {
             // Close any open menus
-            if (currentOpenMenu) {
-                currentOpenMenu.classList.remove('active');
-                currentOpenMenu = null;
-            }
+            document.querySelectorAll('.collection-menu').forEach(menu => {
+                menu.classList.remove('active');
+                const button = menu.parentElement.querySelector('.collection-dropdown');
+                if (button) button.setAttribute('aria-expanded', 'false');
+            });
             
             // Show the selected gallery
             const galleryElement = document.getElementById(`${galleryName}Gallery`);
@@ -719,10 +754,11 @@
         document.addEventListener('click', function(event) {
             if (!event.target.closest('.collection-dropdown') && 
                 !event.target.closest('.collection-menu')) {
-                if (currentOpenMenu) {
-                    currentOpenMenu.classList.remove('active');
-                    currentOpenMenu = null;
-                }
+                document.querySelectorAll('.collection-menu').forEach(menu => {
+                    menu.classList.remove('active');
+                    const button = menu.parentElement.querySelector('.collection-dropdown');
+                    if (button) button.setAttribute('aria-expanded', 'false');
+                });
             }
             
             if (event.target.classList.contains('modal')) {

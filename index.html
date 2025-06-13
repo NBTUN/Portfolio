@@ -200,6 +200,7 @@
 
         .project-content {
             padding: 1rem;
+            position: relative;
         }
 
         /* External link indicator for web projects */
@@ -383,7 +384,6 @@
 
         .has-collection {
             position: relative;
-            cursor: pointer;
         }
 
         /* Gallery title */
@@ -620,24 +620,27 @@
     <script>
         // Gallery images data - preloaded with Qaren branding images
         const galleryImages = {
-    'codemy-branding': [
-        'https://i.imgur.com/abcd123.png', // Add actual CoDemy branding images here
-        'https://i.imgur.com/efgh456.png'
-    ],
-    'qaren-branding': [
-        'https://i.imgur.com/BLseAAd.png',
-        'https://i.imgur.com/hjKutyU.png',
-        'https://i.imgur.com/tslLPuM.png'
-    ],
-    'posters': [
-        'https://i.imgur.com/yourPoster1.png',
-        'https://i.imgur.com/yourPoster2.png'
-    ],
-    'posts': [
-        'https://i.imgur.com/yourPost1.png',
-        'https://i.imgur.com/yourPost2.png'
-    ]
-};
+            'codemy-branding': [
+                // Add CoDemy branding images here
+                'https://i.imgur.com/example1.jpg',
+                'https://i.imgur.com/example2.jpg'
+            ],
+            'qaren-branding': [
+                'https://i.imgur.com/BLseAAd.png',
+                'https://i.imgur.com/hjKutyU.png',
+                'https://i.imgur.com/tslLPuM.png'
+            ],
+            'posters': [
+                // Add poster images here
+                'https://i.imgur.com/poster1.jpg',
+                'https://i.imgur.com/poster2.jpg'
+            ],
+            'posts': [
+                // Add post images here
+                'https://i.imgur.com/post1.jpg',
+                'https://i.imgur.com/post2.jpg'
+            ]
+        };
 
         function showTab(tab) {
             // Toggle project tabs visibility
@@ -657,21 +660,29 @@
 
         function toggleCollectionMenu(event, menuId) {
             event.stopPropagation();
+            event.preventDefault();
             const menu = document.getElementById(menuId);
+            
             // Close all other menus first
             document.querySelectorAll('.collection-menu').forEach(m => {
                 if (m.id !== menuId) m.style.display = 'none';
             });
+            
             // Toggle current menu
-            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+            if (menu.style.display === 'block') {
+                menu.style.display = 'none';
+            } else {
+                menu.style.display = 'block';
+                
+                // Position the menu below the button
+                const button = event.currentTarget;
+                const rect = button.getBoundingClientRect();
+                menu.style.top = `${rect.bottom + window.scrollY}px`;
+                menu.style.left = `${rect.left + window.scrollX}px`;
+            }
         }
 
         function openGallery(galleryName) {
-            // Close any open menus
-            document.querySelectorAll('.collection-menu').forEach(menu => {
-                menu.style.display = 'none';
-            });
-            
             // Show the selected gallery
             const galleryElement = document.getElementById(`${galleryName}Gallery`);
             galleryElement.style.display = 'block';
@@ -711,19 +722,19 @@
         }
 
         // Close menus when clicking elsewhere
-        window.onclick = function(event) {
-            if (!event.target.matches('.has-collection') && 
-                !event.target.closest('.collection-menu') && 
-                !event.target.matches('.collection-dropdown')) {
+        document.addEventListener('click', function(event) {
+            // Close collection menus if clicked outside
+            if (!event.target.closest('.collection-dropdown') && !event.target.closest('.collection-menu')) {
                 document.querySelectorAll('.collection-menu').forEach(menu => {
                     menu.style.display = 'none';
                 });
             }
             
-            if (event.target.className === 'modal') {
+            // Close modals if clicked directly on them
+            if (event.target.classList.contains('modal')) {
                 closeModal();
             }
-        }
+        });
     </script>
 </body>
 </html>

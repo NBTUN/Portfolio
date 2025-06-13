@@ -355,6 +355,7 @@
             cursor: pointer;
         }
 
+        /* Updated Collection Menu Styles */
         .collection-menu {
             display: none;
             position: absolute;
@@ -367,6 +368,10 @@
             top: 100%;
             margin-top: 5px;
             min-width: 150px;
+        }
+
+        .collection-menu.show {
+            display: block;
         }
 
         .collection-menu a {
@@ -383,7 +388,8 @@
             background: #334155;
         }
 
-        .has-collection {
+        /* Make sure the project container has relative positioning */
+        .project.has-collection {
             position: relative;
         }
 
@@ -643,54 +649,37 @@
             ]
         };
 
-        function showTab(tab) {
-            // Toggle project tabs visibility
-            document.getElementById('web').style.display = tab === 'web' ? 'grid' : 'none';
-            document.getElementById('design').style.display = tab === 'design' ? 'grid' : 'none';
-            
-            // Update active button styling
-            const buttons = document.querySelectorAll('.tab-buttons button');
-            buttons.forEach(btn => btn.classList.remove('active'));
-            
-            if (tab === 'web') {
-                buttons[0].classList.add('active');
-            } else {
-                buttons[1].classList.add('active');
-            }
-        }
-
+        // Toggle collection menu
         function toggleCollectionMenu(event, menuId) {
             event.stopPropagation();
             const menu = document.getElementById(menuId);
             
             // Close all other menus first
             document.querySelectorAll('.collection-menu').forEach(m => {
-                if (m.id !== menuId) m.style.display = 'none';
+                if (m.id !== menuId) m.classList.remove('show');
             });
             
             // Toggle current menu
-            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+            menu.classList.toggle('show');
         }
 
+        // Open gallery function
         function openGallery(galleryName) {
             // Close any open menus
             document.querySelectorAll('.collection-menu').forEach(menu => {
-                menu.style.display = 'none';
+                menu.classList.remove('show');
             });
             
             // Show the selected gallery
             const galleryElement = document.getElementById(`${galleryName}Gallery`);
             galleryElement.style.display = 'block';
             
-            // Clear previous images
+            // Clear and populate gallery content
             const galleryContent = document.getElementById(`${galleryName}GalleryContent`);
             galleryContent.innerHTML = '';
             
-            // Add images to gallery
             const images = galleryImages[galleryName] || [];
-            
             if (images.length === 0) {
-                // If no images are provided, show a placeholder
                 const placeholder = document.createElement('div');
                 placeholder.className = 'no-images';
                 placeholder.textContent = 'Images will be added soon';
@@ -710,6 +699,7 @@
             }
         }
 
+        // Close modal function
         function closeModal() {
             document.querySelectorAll('.modal').forEach(modal => {
                 modal.style.display = 'none';
@@ -718,19 +708,32 @@
 
         // Close menus when clicking elsewhere
         document.addEventListener('click', function(event) {
-            // Close collection menus if clicked outside
             if (!event.target.closest('.collection-dropdown') && 
                 !event.target.closest('.collection-menu')) {
                 document.querySelectorAll('.collection-menu').forEach(menu => {
-                    menu.style.display = 'none';
+                    menu.classList.remove('show');
                 });
             }
             
-            // Close modals if clicked directly on them
             if (event.target.classList.contains('modal')) {
                 closeModal();
             }
         });
+
+        // Tab switching function
+        function showTab(tab) {
+            document.getElementById('web').style.display = tab === 'web' ? 'grid' : 'none';
+            document.getElementById('design').style.display = tab === 'design' ? 'grid' : 'none';
+            
+            const buttons = document.querySelectorAll('.tab-buttons button');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            if (tab === 'web') {
+                buttons[0].classList.add('active');
+            } else {
+                buttons[1].classList.add('active');
+            }
+        }
     </script>
 </body>
 </html>

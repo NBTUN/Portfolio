@@ -361,11 +361,9 @@
 
         .modal-img {
             width: 100%;
-            height: auto;
             border-radius: 8px;
             transition: transform 0.3s;
             cursor: pointer;
-            max-height: 300px;
             object-fit: contain;
             background: #1e293b;
         }
@@ -616,24 +614,24 @@
 
     <!-- JavaScript -->
     <script>
-        // Gallery images data - add your image URLs here
+        // Gallery images data
         const galleryImages = {
             'codemy-branding': [
-                'https://i.imgur.com/example1.jpg',
-                'https://i.imgur.com/example2.jpg'
+                'https://i.imgur.com/Rk2PlQt.png',
+                'https://i.imgur.com/l27MEKX.png',
+                'https://i.imgur.com/BrTssnM.png',
+                'https://i.imgur.com/h7vL5JK.png'
             ],
             'qaren-branding': [
-                'https://i.imgur.com/BLseAAd.png',
+                'https://i.imgur.com/tslLPuM.png',
                 'https://i.imgur.com/hjKutyU.png',
-                'https://i.imgur.com/tslLPuM.png'
+                'https://i.imgur.com/BLseAAd.png'
             ],
             'posters': [
-                'https://i.imgur.com/poster1.jpg',
-                'https://i.imgur.com/poster2.jpg'
+                // Add poster images here when available
             ],
             'posts': [
-                'https://i.imgur.com/post1.jpg',
-                'https://i.imgur.com/post2.jpg'
+                // Add post images here when available
             ]
         };
 
@@ -659,11 +657,20 @@
                 galleryContent.appendChild(placeholder);
             } else {
                 images.forEach(img => {
+                    const imgContainer = document.createElement('div');
+                    imgContainer.style.display = 'flex';
+                    imgContainer.style.justifyContent = 'center';
+                    imgContainer.style.alignItems = 'center';
+                    
                     const imgElement = document.createElement('img');
                     imgElement.src = img;
                     imgElement.className = 'modal-img';
                     imgElement.alt = `${galleryName} image`;
-                    galleryContent.appendChild(imgElement);
+                    imgElement.style.maxWidth = '100%';
+                    imgElement.style.height = 'auto';
+                    
+                    imgContainer.appendChild(imgElement);
+                    galleryContent.appendChild(imgContainer);
                 });
             }
         }

@@ -4,10 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Omar Aljahli</title>
-    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* ===== Base Styles ===== */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -26,7 +24,6 @@
             color: inherit;
         }
 
-        /* ===== Animations ===== */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -37,7 +34,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* ===== Header Styles ===== */
         header {
             text-align: center;
             padding: 4rem 1rem 2rem;
@@ -78,7 +74,6 @@
             transform: translateY(-2px);
         }
 
-        /* ===== Section Styles ===== */
         .section {
             padding: 3rem 1rem;
             animation: fadeInUp 1s ease;
@@ -90,7 +85,6 @@
             font-size: 1.8rem;
         }
 
-        /* ===== Card Styles ===== */
         .cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -125,7 +119,6 @@
             color: white;
         }
 
-        /* ===== Tag Styles ===== */
         .tags {
             display: flex;
             flex-wrap: wrap;
@@ -140,7 +133,6 @@
             font-size: 0.75rem;
         }
 
-        /* ===== Tab Styles ===== */
         .tab-buttons {
             text-align: center;
             margin-bottom: 2rem;
@@ -166,7 +158,6 @@
             color: #0f172a;
         }
 
-        /* ===== Project Styles ===== */
         .projects {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -203,7 +194,6 @@
             position: relative;
         }
 
-        /* External link indicator for web projects */
         .external-link {
             position: absolute;
             top: 10px;
@@ -228,7 +218,6 @@
             font-size: 14px;
         }
 
-        /* Updated Collection Dropdown Button Styles */
         .collection-dropdown {
             position: absolute;
             top: 10px;
@@ -238,7 +227,6 @@
             justify-content: center;
             gap: 0.5rem;
             white-space: nowrap;
-            text-align: center;
             font-size: 0.875rem;
             font-weight: 500;
             transition: all 0.2s ease;
@@ -273,7 +261,6 @@
             transform: rotate(180deg);
         }
 
-        /* Collection Menu Styles */
         .collection-menu {
             position: absolute;
             right: 0;
@@ -311,12 +298,10 @@
             background: #334155;
         }
 
-        /* Make sure the project container has relative positioning */
         .project.has-collection {
             position: relative;
         }
 
-        /* ===== Footer Styles ===== */
         footer {
             background: #1e293b;
             text-align: center;
@@ -365,14 +350,12 @@
             color: #94a3b8;
         }
 
-        /* Icon styles */
         .icon {
             font-size: 1rem;
             width: 20px;
             text-align: center;
         }
 
-        /* ===== Gallery Modal Styles ===== */
         .modal {
             display: none;
             position: fixed;
@@ -419,7 +402,6 @@
             cursor: pointer;
         }
 
-        /* Gallery title */
         .gallery-title {
             position: fixed;
             top: 20px;
@@ -435,7 +417,6 @@
     </style>
 </head>
 <body>
-    <!-- Header Section -->
     <header>
         <h1>Omar Aljahli</h1>
         <p class="subtitle">Data Analyst | Web Developer | UX/UI Designer</p>
@@ -450,7 +431,6 @@
         </a>
     </header>
 
-    <!-- Skills Section -->
     <section class="section">
         <h2>Skills</h2>
         <div class="cards">
@@ -488,7 +468,6 @@
         </div>
     </section>
 
-    <!-- Projects Section -->
     <section class="section">
         <h2>Featured Work</h2>
         <div class="tab-buttons">
@@ -500,7 +479,6 @@
             </button>
         </div>
 
-        <!-- Web Projects Tab -->
         <div id="web" class="projects">
             <div class="project">
                 <a href="https://drive.google.com/drive/folders/1nepy6J5Yu-0NjbTGHrhkyoFSWL3Kk1kv?usp=sharing" target="_blank">
@@ -548,7 +526,6 @@
             </div>
         </div>
 
-        <!-- Design Projects Tab -->
         <div id="design" class="projects" style="display:none;">
             <div class="project has-collection">
                 <img src="https://i.imgur.com/7kjmmfJ.png" alt="Brand Identity Design">
@@ -605,43 +582,30 @@
     </section>
 
     <!-- Gallery Modals -->
-    <!-- CoDemy Branding Gallery -->
     <div id="codemy-brandingGallery" class="modal">
         <span class="close" onclick="closeModal()">&times;</span>
         <h2 class="gallery-title">CoDemy Branding</h2>
-        <div class="modal-content" id="codemy-brandingGalleryContent">
-            <!-- Images will be added dynamically -->
-        </div>
+        <div class="modal-content" id="codemy-brandingGalleryContent"></div>
     </div>
 
-    <!-- Qaren Branding Gallery -->
     <div id="qaren-brandingGallery" class="modal">
         <span class="close" onclick="closeModal()">&times;</span>
         <h2 class="gallery-title">Qaren Branding</h2>
-        <div class="modal-content" id="qaren-brandingGalleryContent">
-            <!-- Images will be added dynamically -->
-        </div>
+        <div class="modal-content" id="qaren-brandingGalleryContent"></div>
     </div>
 
-    <!-- Posters Gallery -->
     <div id="postersGallery" class="modal">
         <span class="close" onclick="closeModal()">&times;</span>
         <h2 class="gallery-title">Posters Collection</h2>
-        <div class="modal-content" id="postersGalleryContent">
-            <!-- Images will be added dynamically -->
-        </div>
+        <div class="modal-content" id="postersGalleryContent"></div>
     </div>
 
-    <!-- Posts Gallery -->
     <div id="postsGallery" class="modal">
         <span class="close" onclick="closeModal()">&times;</span>
         <h2 class="gallery-title">Posts Collection</h2>
-        <div class="modal-content" id="postsGalleryContent">
-            <!-- Images will be added dynamically -->
-        </div>
+        <div class="modal-content" id="postsGalleryContent"></div>
     </div>
 
-    <!-- Footer Section -->
     <footer>
         <h2>Let's Work Together</h2>
         <div class="contact-info">
@@ -659,11 +623,11 @@
         <p class="copyright">© 2025 Omar Aljahli</p>
     </footer>
 
-    <!-- JavaScript -->
     <script>
-        // Gallery images data - preloaded with Qaren branding images
+        // Gallery images data - add your image URLs here
         const galleryImages = {
             'codemy-branding': [
+                // Add CoDemy branding images here
                 'https://i.imgur.com/example1.jpg',
                 'https://i.imgur.com/example2.jpg'
             ],
@@ -673,10 +637,12 @@
                 'https://i.imgur.com/tslLPuM.png'
             ],
             'posters': [
+                // Add poster images here
                 'https://i.imgur.com/poster1.jpg',
                 'https://i.imgur.com/poster2.jpg'
             ],
             'posts': [
+                // Add post images here
                 'https://i.imgur.com/post1.jpg',
                 'https://i.imgur.com/post2.jpg'
             ]

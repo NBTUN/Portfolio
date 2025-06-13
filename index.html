@@ -426,6 +426,7 @@
             align-items: center;
             height: 100%;
             width: 100%;
+            position: relative;
         }
 
         .zoomed-img {
@@ -436,12 +437,72 @@
 
         .zoom-close {
             position: absolute;
-            top: 20px;
-            right: 30px;
+            top: 30px;
+            right: 40px;
             color: white;
-            font-size: 35px;
+            font-size: 50px;
             font-weight: bold;
             cursor: pointer;
+            z-index: 1002;
+            background: rgba(0,0,0,0.5);
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .zoom-close:hover {
+            background: rgba(0,0,0,0.8);
+            transform: scale(1.1);
+        }
+
+        .nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 50px;
+            cursor: pointer;
+            z-index: 1002;
+            background: rgba(0,0,0,0.5);
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+
+        .nav-arrow:hover {
+            background: rgba(0,0,0,0.8);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .nav-arrow.left {
+            left: 30px;
+        }
+
+        .nav-arrow.right {
+            right: 30px;
+        }
+
+        .zoom-title {
+            position: absolute;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 1.5rem;
+            text-align: center;
+            background: rgba(0,0,0,0.5);
+            padding: 10px 20px;
+            border-radius: 8px;
+            z-index: 1002;
         }
     </style>
 </head>
@@ -641,9 +702,12 @@
     <!-- Zoom Modal -->
     <div id="zoomModal" class="zoom-modal">
         <span class="zoom-close" onclick="closeZoomModal()">&times;</span>
+        <div class="nav-arrow left" onclick="navigateImage(-1)">&#10094;</div>
         <div class="zoom-content">
+            <div class="zoom-title" id="zoomTitle"></div>
             <img id="zoomedImage" class="zoomed-img" src="" alt="Zoomed Image">
         </div>
+        <div class="nav-arrow right" onclick="navigateImage(1)">&#10095;</div>
     </div>
 
     <!-- Footer Section -->
@@ -696,8 +760,13 @@
             ]
         };
 
+        // Current gallery and image index for navigation
+        let currentGallery = '';
+        let currentImageIndex = 0;
+
         // Open gallery function
         function openGallery(galleryName) {
+            currentGallery = galleryName;
             // Show the selected gallery
             const galleryElement = document.getElementById(`${galleryName}Gallery`);
             galleryElement.style.display = 'block';
@@ -717,11 +786,11 @@
                 placeholder.style.padding = '40px';
                 galleryContent.appendChild(placeholder);
             } else {
-                images.forEach(img => {
+                images.forEach((img, index) => {
                     const imgContainer = document.createElement('div');
                     imgContainer.className = 'modal-img-container';
                     imgContainer.onclick = function() {
-                        openZoomModal(img);
+                        openZoomModal(img, galleryName, index);
                     };
                     
                     const imgElement = document.createElement('img');
@@ -736,11 +805,61 @@
         }
 
         // Open zoom modal
-        function openZoomModal(imgSrc) {
+        function openZoomModal(imgSrc, galleryName = currentGallery, imgIndex = 0) {
             const zoomModal = document.getElementById('zoomModal');
             const zoomedImg = document.getElementById('zoomedImage');
+            const zoomTitle = document.getElementById('zoomTitle');
+            
+            currentGallery = galleryName;
+            currentImageIndex = imgIndex;
+            
             zoomedImg.src = imgSrc;
+            zoomTitle.textContent = getGalleryTitle(galleryName);
             zoomModal.style.display = 'block';
+            
+            // Update arrow visibility
+            updateArrowVisibility();
+        }
+
+        // Navigate between images
+        function navigateImage(direction) {
+            const images = galleryImages[currentGallery] || [];
+            if (images.length === 0) return;
+            
+            currentImageIndex += direction;
+            
+            // Wrap around if at beginning or end
+            if (currentImageIndex < 0) {
+                currentImageIndex = images.length - 1;
+            } else if (currentImageIndex >= images.length) {
+                currentImageIndex = 0;
+            }
+            
+            document.getElementById('zoomedImage').src = images[currentImageIndex];
+            updateArrowVisibility();
+        }
+
+        // Update arrow visibility based on current image
+        function updateArrowVisibility() {
+            const images = galleryImages[currentGallery] || [];
+            const arrows = document.querySelectorAll('.nav-arrow');
+            
+            if (images.length <= 1) {
+                arrows.forEach(arrow => arrow.style.display = 'none');
+            } else {
+                arrows.forEach(arrow => arrow.style.display = 'flex');
+            }
+        }
+
+        // Get gallery title for display
+        function getGalleryTitle(galleryName) {
+            const titles = {
+                'codemy-branding': 'CoDemy Branding',
+                'qaren-branding': 'Qaren Branding',
+                'posters': 'Posters Collection',
+                'posts': 'Posts Collection'
+            };
+            return titles[galleryName] || '';
         }
 
         // Close zoom modal
@@ -762,6 +881,20 @@
             }
             if (event.target.classList.contains('zoom-modal')) {
                 closeZoomModal();
+            }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(event) {
+            const zoomModal = document.getElementById('zoomModal');
+            if (zoomModal.style.display === 'block') {
+                if (event.key === 'ArrowLeft') {
+                    navigateImage(-1);
+                } else if (event.key === 'ArrowRight') {
+                    navigateImage(1);
+                } else if (event.key === 'Escape') {
+                    closeZoomModal();
+                }
             }
         });
 

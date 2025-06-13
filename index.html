@@ -310,7 +310,7 @@
         .modal {
             display: none;
             position: fixed;
-            z-index: 100;
+            z-index: 1000;
             left: 0;
             top: 0;
             width: 100%;
@@ -334,6 +334,9 @@
             border-radius: 8px;
             transition: transform 0.3s;
             cursor: pointer;
+            max-height: 300px;
+            object-fit: contain;
+            background: #1e293b;
         }
 
         .modal-img:hover {
@@ -371,6 +374,7 @@
             text-decoration: none;
             border-radius: 4px;
             white-space: nowrap;
+            transition: background 0.2s;
         }
 
         .collection-menu a:hover {
@@ -380,6 +384,20 @@
         .has-collection {
             position: relative;
             cursor: pointer;
+        }
+
+        /* Gallery title */
+        .gallery-title {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 1.5rem;
+            text-align: center;
+            width: 100%;
+            padding: 0 20px;
+            z-index: 1001;
         }
     </style>
 </head>
@@ -509,8 +527,8 @@
                     <h3>Brand Identity Design</h3>
                     <p>Complete brand identity packages for various projects.</p>
                     <div class="collection-menu" id="brandMenu">
-                        <a href="#" onclick="openGallery('codemy'); return false;">CoDemy</a>
-                        <a href="#" onclick="openGallery('qaren'); return false;">Qaren</a>
+                        <a href="#" onclick="openGallery('codemy-branding'); return false;">CoDemy Branding</a>
+                        <a href="#" onclick="openGallery('qaren-branding'); return false;">Qaren Branding</a>
                     </div>
                     <div class="tags">
                         <span class="tag">Photoshop</span>
@@ -544,29 +562,37 @@
     </section>
 
     <!-- Gallery Modals -->
-    <div id="codemyGallery" class="modal">
+    <!-- CoDemy Branding Gallery -->
+    <div id="codemy-brandingGallery" class="modal">
         <span class="close" onclick="closeModal()">&times;</span>
-        <div class="modal-content" id="codemyGalleryContent">
+        <h2 class="gallery-title">CoDemy Branding</h2>
+        <div class="modal-content" id="codemy-brandingGalleryContent">
             <!-- Images will be added dynamically -->
         </div>
     </div>
 
-    <div id="qarenGallery" class="modal">
+    <!-- Qaren Branding Gallery -->
+    <div id="qaren-brandingGallery" class="modal">
         <span class="close" onclick="closeModal()">&times;</span>
-        <div class="modal-content" id="qarenGalleryContent">
+        <h2 class="gallery-title">Qaren Branding</h2>
+        <div class="modal-content" id="qaren-brandingGalleryContent">
             <!-- Images will be added dynamically -->
         </div>
     </div>
 
+    <!-- Posters Gallery -->
     <div id="postersGallery" class="modal">
         <span class="close" onclick="closeModal()">&times;</span>
+        <h2 class="gallery-title">Posters Collection</h2>
         <div class="modal-content" id="postersGalleryContent">
             <!-- Images will be added dynamically -->
         </div>
     </div>
 
+    <!-- Posts Gallery -->
     <div id="postsGallery" class="modal">
         <span class="close" onclick="closeModal()">&times;</span>
+        <h2 class="gallery-title">Posts Collection</h2>
         <div class="modal-content" id="postsGalleryContent">
             <!-- Images will be added dynamically -->
         </div>
@@ -592,6 +618,26 @@
 
     <!-- JavaScript -->
     <script>
+        // Gallery images data - you can add your images here later
+        const galleryImages = {
+            'codemy-branding': [
+                // Add CoDemy branding images here
+                // Example: 'path/to/codemy-branding-1.jpg'
+            ],
+            'qaren-branding': [
+                // Add Qaren branding images here
+                // Example: 'path/to/qaren-branding-1.jpg'
+            ],
+            'posters': [
+                // Add poster images here
+                // Example: 'path/to/poster-1.jpg'
+            ],
+            'posts': [
+                // Add post images here
+                // Example: 'path/to/post-1.jpg'
+            ]
+        };
+
         function showTab(tab) {
             // Toggle project tabs visibility
             document.getElementById('web').style.display = tab === 'web' ? 'grid' : 'none';
@@ -626,54 +672,35 @@
             });
             
             // Show the selected gallery
-            document.getElementById(`${galleryName}Gallery`).style.display = 'block';
+            const galleryElement = document.getElementById(`${galleryName}Gallery`);
+            galleryElement.style.display = 'block';
             
             // Clear previous images
             const galleryContent = document.getElementById(`${galleryName}GalleryContent`);
             galleryContent.innerHTML = '';
             
-            // Add your images here (replace these with your actual image URLs)
-            const images = [];
-            
-            if (galleryName === 'codemy') {
-                images.push(
-                    'https://i.imgur.com/rf3e9Jj.jpeg',
-                    // Add more CoDemy brand identity images here
-                    'https://via.placeholder.com/600x400/1e293b/ffffff?text=CoDemy+1',
-                    'https://via.placeholder.com/600x400/1e293b/ffffff?text=CoDemy+2',
-                    'https://via.placeholder.com/600x400/1e293b/ffffff?text=CoDemy+3'
-                );
-            } else if (galleryName === 'qaren') {
-                images.push(
-                    // Qaren brand identity images
-                    'https://i.imgur.com/BLseAAd.png',
-                    'https://i.imgur.com/hjKutyU.png',
-                    'https://i.imgur.com/tslLPuM.png'
-                );
-            } else if (galleryName === 'posters') {
-                images.push(
-                    // Add your poster images here
-                    'https://via.placeholder.com/600x400/1e293b/ffffff?text=Poster+1',
-                    'https://via.placeholder.com/600x400/1e293b/ffffff?text=Poster+2',
-                    'https://via.placeholder.com/600x400/1e293b/ffffff?text=Poster+3'
-                );
-            } else if (galleryName === 'posts') {
-                images.push(
-                    // Add your post images here
-                    'https://via.placeholder.com/600x400/1e293b/ffffff?text=Post+1',
-                    'https://via.placeholder.com/600x400/1e293b/ffffff?text=Post+2',
-                    'https://via.placeholder.com/600x400/1e293b/ffffff?text=Post+3'
-                );
-            }
-            
             // Add images to gallery
-            images.forEach(img => {
-                const imgElement = document.createElement('img');
-                imgElement.src = img;
-                imgElement.className = 'modal-img';
-                imgElement.alt = `${galleryName} collection`;
-                galleryContent.appendChild(imgElement);
-            });
+            const images = galleryImages[galleryName] || [];
+            
+            if (images.length === 0) {
+                // If no images are provided, show a placeholder
+                const placeholder = document.createElement('div');
+                placeholder.className = 'no-images';
+                placeholder.textContent = 'Images will be added soon';
+                placeholder.style.textAlign = 'center';
+                placeholder.style.color = 'white';
+                placeholder.style.gridColumn = '1 / -1';
+                placeholder.style.padding = '40px';
+                galleryContent.appendChild(placeholder);
+            } else {
+                images.forEach(img => {
+                    const imgElement = document.createElement('img');
+                    imgElement.src = img;
+                    imgElement.className = 'modal-img';
+                    imgElement.alt = `${galleryName} image`;
+                    galleryContent.appendChild(imgElement);
+                });
+            }
         }
 
         function closeModal() {
@@ -684,7 +711,9 @@
 
         // Close menus when clicking elsewhere
         window.onclick = function(event) {
-            if (!event.target.matches('.has-collection') && !event.target.closest('.collection-menu') && !event.target.matches('.collection-dropdown')) {
+            if (!event.target.matches('.has-collection') && 
+                !event.target.closest('.collection-menu') && 
+                !event.target.matches('.collection-dropdown')) {
                 document.querySelectorAll('.collection-menu').forEach(menu => {
                     menu.style.display = 'none';
                 });

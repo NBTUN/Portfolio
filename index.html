@@ -516,49 +516,52 @@
         </div>
 
         <!-- Design Projects Tab -->
-        <div id="design" class="projects" style="display:none;">
-            <div class="project has-collection">
-                <img src="https://i.imgur.com/7kjmmfJ.png" alt="Brand Identity Design">
-                <div class="collection-dropdown" onclick="toggleCollectionMenu(event, 'brandMenu')">
-                    <span>View Collection</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="project-content">
-                    <h3>Brand Identity Design</h3>
-                    <p>Complete brand identity packages for various projects.</p>
-                    <div class="collection-menu" id="brandMenu">
-                        <a href="#" onclick="openGallery('codemy-branding'); return false;">CoDemy Branding</a>
-                        <a href="#" onclick="openGallery('qaren-branding'); return false;">Qaren Branding</a>
-                    </div>
-                    <div class="tags">
-                        <span class="tag">Photoshop</span>
-                        <span class="tag">Figma</span>
-                        <span class="tag">Auxre</span>
-                        <span class="tag">Canva</span>
-                    </div>
-                </div>
+<div id="design" class="projects" style="display:none;">
+    <!-- Brand Identity Design Card -->
+    <div class="project has-collection">
+        <div class="project-content">
+            <img src="https://i.imgur.com/7kjmmfJ.png" alt="Brand Identity Design">
+            <div class="collection-dropdown" onclick="toggleCollectionMenu(event, 'brandMenu')">
+                <span>View Collection</span>
+                <i class="fas fa-chevron-down"></i>
             </div>
-            <div class="project has-collection">
-                <img src="https://i.imgur.com/cymjQeo.png" alt="Digital Art Collection">
-                <div class="collection-dropdown" onclick="toggleCollectionMenu(event, 'artMenu')">
-                    <span>View Collection</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="project-content">
-                    <h3>Digital Art Collection</h3>
-                    <p>Series of digital illustrations and photo manipulations.</p>
-                    <div class="collection-menu" id="artMenu">
-                        <a href="#" onclick="openGallery('posters'); return false;">Posters</a>
-                        <a href="#" onclick="openGallery('posts'); return false;">Posts</a>
-                    </div>
-                    <div class="tags">
-                        <span class="tag">Photoshop</span>
-                        <span class="tag">Canva</span>
-                        <span class="tag">Digital Art</span>
-                    </div>
-                </div>
+            <div class="collection-menu" id="brandMenu">
+                <a href="#" onclick="openGallery('codemy-branding'); return false;">CoDemy Branding</a>
+                <a href="#" onclick="openGallery('qaren-branding'); return false;">Qaren Branding</a>
+            </div>
+            <h3>Brand Identity Design</h3>
+            <p>Complete brand identity packages for various projects.</p>
+            <div class="tags">
+                <span class="tag">Photoshop</span>
+                <span class="tag">Figma</span>
+                <span class="tag">Auxre</span>
+                <span class="tag">Canva</span>
             </div>
         </div>
+    </div>
+
+    <!-- Digital Art Collection Card -->
+    <div class="project has-collection">
+        <div class="project-content">
+            <img src="https://i.imgur.com/cymjQeo.png" alt="Digital Art Collection">
+            <div class="collection-dropdown" onclick="toggleCollectionMenu(event, 'artMenu')">
+                <span>View Collection</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="collection-menu" id="artMenu">
+                <a href="#" onclick="openGallery('posters'); return false;">Posters</a>
+                <a href="#" onclick="openGallery('posts'); return false;">Posts</a>
+            </div>
+            <h3>Digital Art Collection</h3>
+            <p>Series of digital illustrations and photo manipulations.</p>
+            <div class="tags">
+                <span class="tag">Photoshop</span>
+                <span class="tag">Canva</span>
+                <span class="tag">Digital Art</span>
+            </div>
+        </div>
+    </div>
+</div>
     </section>
 
     <!-- Gallery Modals -->
@@ -620,24 +623,24 @@
     <script>
         // Gallery images data - preloaded with Qaren branding images
         const galleryImages = {
-            'codemy-branding': [
-                // Add CoDemy branding images here
-                // Example: 'path/to/codemy-branding-1.jpg'
-            ],
-            'qaren-branding': [
-                'https://i.imgur.com/BLseAAd.png',
-                'https://i.imgur.com/hjKutyU.png',
-                'https://i.imgur.com/tslLPuM.png'
-            ],
-            'posters': [
-                // Add poster images here
-                // Example: 'path/to/poster-1.jpg'
-            ],
-            'posts': [
-                // Add post images here
-                // Example: 'path/to/post-1.jpg'
-            ]
-        };
+    'codemy-branding': [
+        'https://i.imgur.com/abcd123.png', // Add actual CoDemy branding images here
+        'https://i.imgur.com/efgh456.png'
+    ],
+    'qaren-branding': [
+        'https://i.imgur.com/BLseAAd.png',
+        'https://i.imgur.com/hjKutyU.png',
+        'https://i.imgur.com/tslLPuM.png'
+    ],
+    'posters': [
+        'https://i.imgur.com/yourPoster1.png',
+        'https://i.imgur.com/yourPoster2.png'
+    ],
+    'posts': [
+        'https://i.imgur.com/yourPost1.png',
+        'https://i.imgur.com/yourPost2.png'
+    ]
+};
 
         function showTab(tab) {
             // Toggle project tabs visibility

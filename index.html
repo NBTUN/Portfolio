@@ -353,23 +353,33 @@
         .modal-content {
             margin: auto;
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
             gap: 20px;
             padding: 40px;
-            max-width: 1200px;
+            max-width: 1400px;
+        }
+
+        .modal-img-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            overflow: hidden;
+            border-radius: 8px;
+            background: #1e293b;
+            transition: transform 0.3s;
+        }
+
+        .modal-img-container:hover {
+            transform: scale(1.02);
         }
 
         .modal-img {
             width: 100%;
-            border-radius: 8px;
-            transition: transform 0.3s;
-            cursor: pointer;
+            height: auto;
+            max-height: 80vh;
             object-fit: contain;
-            background: #1e293b;
-        }
-
-        .modal-img:hover {
-            transform: scale(1.02);
+            transition: transform 0.3s;
         }
 
         .close {
@@ -380,6 +390,7 @@
             font-size: 35px;
             font-weight: bold;
             cursor: pointer;
+            z-index: 1001;
         }
 
         /* Gallery title */
@@ -394,6 +405,43 @@
             width: 100%;
             padding: 0 20px;
             z-index: 1001;
+        }
+
+        /* Zoomed image modal */
+        .zoom-modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.95);
+            overflow: auto;
+        }
+
+        .zoom-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+        }
+
+        .zoomed-img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+
+        .zoom-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -594,6 +642,14 @@
         <div class="modal-content" id="postsGalleryContent"></div>
     </div>
 
+    <!-- Zoom Modal -->
+    <div id="zoomModal" class="zoom-modal">
+        <span class="zoom-close" onclick="closeZoomModal()">&times;</span>
+        <div class="zoom-content">
+            <img id="zoomedImage" class="zoomed-img" src="" alt="Zoomed Image">
+        </div>
+    </div>
+
     <!-- Footer Section -->
     <footer>
         <h2>Let's Work Together</h2>
@@ -658,21 +714,33 @@
             } else {
                 images.forEach(img => {
                     const imgContainer = document.createElement('div');
-                    imgContainer.style.display = 'flex';
-                    imgContainer.style.justifyContent = 'center';
-                    imgContainer.style.alignItems = 'center';
+                    imgContainer.className = 'modal-img-container';
+                    imgContainer.onclick = function() {
+                        openZoomModal(img);
+                    };
                     
                     const imgElement = document.createElement('img');
                     imgElement.src = img;
                     imgElement.className = 'modal-img';
                     imgElement.alt = `${galleryName} image`;
-                    imgElement.style.maxWidth = '100%';
-                    imgElement.style.height = 'auto';
                     
                     imgContainer.appendChild(imgElement);
                     galleryContent.appendChild(imgContainer);
                 });
             }
+        }
+
+        // Open zoom modal
+        function openZoomModal(imgSrc) {
+            const zoomModal = document.getElementById('zoomModal');
+            const zoomedImg = document.getElementById('zoomedImage');
+            zoomedImg.src = imgSrc;
+            zoomModal.style.display = 'block';
+        }
+
+        // Close zoom modal
+        function closeZoomModal() {
+            document.getElementById('zoomModal').style.display = 'none';
         }
 
         // Close modal function
@@ -682,10 +750,13 @@
             });
         }
 
-        // Close modal when clicking on the background
+        // Close modals when clicking on the background
         document.addEventListener('click', function(event) {
             if (event.target.classList.contains('modal')) {
                 closeModal();
+            }
+            if (event.target.classList.contains('zoom-modal')) {
+                closeZoomModal();
             }
         });
 

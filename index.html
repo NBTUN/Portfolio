@@ -676,25 +676,25 @@
 
     <!-- Gallery Modals -->
     <div id="codemy-brandingGallery" class="modal">
-        <span class="close" onclick="closeModal()">&times;</span>
+        <span class="close" onclick="closeCurrentModal(this)">&times;</span>
         <h2 class="gallery-title">CoDemy Branding</h2>
         <div class="modal-content" id="codemy-brandingGalleryContent"></div>
     </div>
 
     <div id="qaren-brandingGallery" class="modal">
-        <span class="close" onclick="closeModal()">&times;</span>
+        <span class="close" onclick="closeCurrentModal(this)">&times;</span>
         <h2 class="gallery-title">Qaren Branding</h2>
         <div class="modal-content" id="qaren-brandingGalleryContent"></div>
     </div>
 
     <div id="postersGallery" class="modal">
-        <span class="close" onclick="closeModal()">&times;</span>
+        <span class="close" onclick="closeCurrentModal(this)">&times;</span>
         <h2 class="gallery-title">Posters Collection</h2>
         <div class="modal-content" id="postersGalleryContent"></div>
     </div>
 
     <div id="postsGallery" class="modal">
-        <span class="close" onclick="closeModal()">&times;</span>
+        <span class="close" onclick="closeCurrentModal(this)">&times;</span>
         <h2 class="gallery-title">Posts Collection</h2>
         <div class="modal-content" id="postsGalleryContent"></div>
     </div>
@@ -764,14 +764,32 @@
         let currentGallery = '';
         let currentImageIndex = 0;
 
-        // Open gallery function
+        // Close the specific modal that contains the clicked close button
+        function closeCurrentModal(closeButton) {
+            const modal = closeButton.closest('.modal');
+            if (modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // Close modal by ID or all modals
+        function closeModal(modalId) {
+            if (modalId) {
+                document.getElementById(modalId).style.display = 'none';
+            } else {
+                document.querySelectorAll('.modal').forEach(modal => {
+                    modal.style.display = 'none';
+                });
+            }
+        }
+
         function openGallery(galleryName) {
+            closeModal();
             currentGallery = galleryName;
-            // Show the selected gallery
-            const galleryElement = document.getElementById(`${galleryName}Gallery`);
+            const modalId = `${galleryName}Gallery`;
+            const galleryElement = document.getElementById(modalId);
             galleryElement.style.display = 'block';
             
-            // Clear and populate gallery content
             const galleryContent = document.getElementById(`${galleryName}GalleryContent`);
             galleryContent.innerHTML = '';
             
@@ -867,17 +885,10 @@
             document.getElementById('zoomModal').style.display = 'none';
         }
 
-        // Close modal function
-        function closeModal() {
-            document.querySelectorAll('.modal').forEach(modal => {
-                modal.style.display = 'none';
-            });
-        }
-
         // Close modals when clicking on the background
         document.addEventListener('click', function(event) {
             if (event.target.classList.contains('modal')) {
-                closeModal();
+                closeModal(event.target.id);
             }
             if (event.target.classList.contains('zoom-modal')) {
                 closeZoomModal();
@@ -896,6 +907,15 @@
                     closeZoomModal();
                 }
             }
+        });
+
+        // Initialize close buttons to prevent propagation
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.close').forEach(closeBtn => {
+                closeBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+            });
         });
 
         // Tab switching function
